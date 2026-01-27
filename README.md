@@ -1,6 +1,58 @@
-# Getting Started with Create React App
+# 🛠️ Guía de Comandos del Proyecto
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 📦 Instalación y Dependencias
+Comandos para configurar Bootstrap y el compilador de estilos.
+
+```bash
+# Instalar dependencias del package.json
+npm install
+```
+
+# Enlace de Despliegue
+https://funny-gingersnap-be4f70.netlify.app/
+
+# Compilar Sass y vigilar cambios (Watch mode)
+```bash
+sass scss:dist/css --watch
+```
+## 🌿 Comandos de Git
+
+### Gestión de Ramas
+Para crear una rama nueva y cambiarte a ella en un solo paso:
+```bash
+git checkout -b nueva-funcionalidad
+```
+
+Para añadir los cambios a la rama
+```bash
+git add .
+git add nombreDeArchivo
+```
+
+Para hacer el commit para guardarlo para el push:
+```bash
+git commit -m "Explica que has hecho"
+```
+
+Volver a la rama principal:
+```bash
+git checkout main
+```
+
+Actualizar cambios desde el remoto:
+```bash
+git pull
+```
+
+Subir rama a GitHub:
+```bash
+git push -u origin mi-mejora
+```
+
+Borrar rama local:
+```bash
+git branch -d mi-mejora
+```
 
 ## Available Scripts
 
@@ -28,43 +80,3 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
