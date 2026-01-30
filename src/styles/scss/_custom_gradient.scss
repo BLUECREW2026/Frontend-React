@@ -1,0 +1,8 @@
+// 1. Definimos los colores del degradado
+$custom-grad-start: hsl(180, 79%, 43%);
+$custom-grad-end:   hsl(180, 76%, 24%);
+
+// 2. Creamos una clase para el degradado personalizado
+.custom-gradient {
+    background: linear-gradient(90deg, $custom-grad-start 0%, $custom-grad-end 100%);
+}
