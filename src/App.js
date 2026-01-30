@@ -1,11 +1,11 @@
-import '../../dist/css/styles.css';
+import './dist/css/style.css';
 import Navbar from './components/nav';
 
 function App() {
   return (
 
-      <><Navbar />
-      </>
+    <><Navbar />
+    </>
   );
 }
 
