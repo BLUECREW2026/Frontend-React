@@ -1,19 +1,15 @@
-export default  function ONGSection() {
+export default function ONGSection() {
   return (
     <section>
-      <div className="container-fluid text-center py-5 custom-gradient text-white">
-        <div className="row justify-content-center">
-          <div className="col-md-8">
-            <h2 className="fw-bold mb-4">¿Eres una ONG?</h2>
-            <p>
+      <div class="container-fluid text-center py-5 custom-gradient text-white">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <h2 class="fw-bold mb-4">¿Eres una ONG?</h2>
+            <p class="  ">
               Organiza tus propios eventos y recluta voluntarios para tus
               iniciativas de conservación marina.
             </p>
-            <button
-              type="button"
-              className="btn btn-primary text-white"
-              onClick={() => console.log("Click en saber más")}
-            >
+            <button type="button" class="btn btn-primary text-white">
               Saber más
             </button>
           </div>
@@ -21,4 +17,4 @@ export default  function ONGSection() {
       </div>
     </section>
   );
-};
+}
