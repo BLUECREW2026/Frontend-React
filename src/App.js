@@ -1,12 +1,12 @@
 import './dist/css/style.css';
-import Navbar from './components/nav';
-import Footer from './components/Footer';
+import Navbar from './components/Nav';
+import Login from './components/LoginRegistro';
 
 function App() {
   return (
-    <>
-      <Navbar />
-      <Footer />
+
+    <><Navbar />
+    {/* <Login/> */}
     </>
   );
 }
