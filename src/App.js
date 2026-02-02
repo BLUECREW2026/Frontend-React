@@ -1,12 +1,12 @@
 import './dist/css/style.css';
-import Navbar from './components/nav';
-import HeroSection from './components/HeroSection';
+import Navbar from './components/Nav';
+import Login from './components/LoginRegistro';
 
 function App() {
   return (
-    <>
-      <Navbar />
-      <HeroSection/>
+
+    <><Navbar />
+    {/* <Login/> */}
     </>
   );
 }
