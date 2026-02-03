@@ -1,82 +1,38 @@
+import "../pages/estilos.css"
 import { useState } from "react";
 
-function Auth() {
-  const [isRegister, setIsRegister] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
-    if (isRegister) {
-      console.log("Registro:", { name, email, password });
-    } else {
-      console.log("Login:", { email, password });
-    }
-  };
-
+export default function Login() {
+  const [registrado,setRegistrado] = useState(true);
   return (
-    <div className="container d-flex justify-content-center align-items-center vh-100">
-      <div className="card p-4 shadow" style={{ width: "350px" }}>
-        <h3 className="text-center mb-3">
-          {isRegister ? "Registro" : "Iniciar Sesión"}
-        </h3>
-
-        <form onSubmit={handleSubmit}>
-          {isRegister && (
-            <div className="mb-3">
-              <label className="form-label">Nombre</label>
-              <input
-                type="text"
-                className="form-control"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-              />
-            </div>
-          )}
-
-          <div className="mb-3">
-            <label className="form-label">Correo</label>
-            <input
-              type="email"
-              className="form-control"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="mb-3">
-            <label className="form-label">Contraseña</label>
-            <input
-              type="password"
-              className="form-control"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-
-          <button type="submit" className="btn btn-primary w-100">
-            {isRegister ? "Registrarse" : "Entrar"}
-          </button>
-        </form>
-
-        <div className="text-center mt-3">
-          <button
-            className="btn btn-link"
-            onClick={() => setIsRegister(!isRegister)}
-          >
-            {isRegister
-              ? "¿Ya tienes cuenta? Inicia sesión"
-              : "¿No tienes cuenta? Regístrate"}
-          </button>
-        </div>
+ 
+    <div className="container" id="container">
+      <div className="panel panel-izquierdo">
+        <h2 id="titulo">Crea tu cuenta</h2>
+        <p id="texto-panel">
+          Registrate para ver mas informacion de nuestros eventos
+        </p>
+        <button id="registro" onClick={setRegistrado(prev => !prev )}>Registro</button>
       </div>
-    </div>
-  );
-}
+      <div className="panel panel-derecho">
+        <form className="form login">
+          <h2>LOGIN</h2>
+          <input type="email" placeholder="Email" required />
+          <input type="password" placeholder="Contraseña" required />
+          <button type="submit">Iniciar Seccion</button>
+        </form>
+        <form classNameName="form registro">
+            <h2>REGISTRO</h2>
+            <input type="text" placeholder="Nombre" required/>
+             <input type="email" placeholder="Email" required />
+             <input type="password" placeholder="Contraseña" required />
+             <button type="submit">Registro</button>
+        </form>
+      </div>
 
-export default Auth;
+    </div>
+
+  );
+  
+}
