@@ -76,10 +76,10 @@ export default function Footer() {
                             href="mailto:bluecrew@gmail.com"
                             className="text-white text-decoration-none"
                         >
-                            bluecrew@gmail.com
+                            <i className="bi bi-envelope-at-fill me-2"></i>bluecrew@gmail.com
                         </a>
 
-                        <span className="mb-1">España</span>
+                        <span className="mb-1"><i className="bi bi-geo-alt-fill me-2"></i>España</span>
                     </div>
                 </div>
             </div>
