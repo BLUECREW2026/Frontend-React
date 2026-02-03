@@ -17,8 +17,8 @@ export const eventos = [
     },
     {
         imagen: img3,
-        titulo: "Rescate y Avistamiento de Tortugas",
-        descripcion: "Charla educativa sobre el protocolo de actuación al encontrar tortugas heridas y cómo proteger sus zonas de anidación."
+        titulo: "Rescate de Tortugas",
+        descripcion: "Charla educativa sobre el protocolo de actuación al encontrar tortugas heridas y cómo proteger sus zonas."
     },
     {
         imagen: img4,
