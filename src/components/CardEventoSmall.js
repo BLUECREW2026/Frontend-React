@@ -1,4 +1,4 @@
-export default function Card_Evento({ imagen, titulo }) {
+export default function CardEvento({ imagen, titulo }) {
     return (
         <div className="col p-3">
             <article class="card rounded-4 p-3 bg-white shadow">

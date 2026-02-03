@@ -1,4 +1,4 @@
-export default function Formulario_Contacto() {
+export default function FormularioContacto() {
     return (
         <div class="row justify-content-center mb-5">
             <div class="col-lg-8 col-md-10">
