@@ -1,4 +1,4 @@
-export default function FormularioDatosUsuario() {
+export default function Formulario_Datos_Usuario() {
     return (
         <div class="row justify-content-center mb-5">
             <div class="col-lg-8 col-md-10">
