@@ -5,12 +5,12 @@ export default function MisEventos() {
     return (
         <>
             <div>
-                <div>
-                    <p>CALIFICADOS</p>
+                <div className='text-center'>
+                    <p className='text-secondary h2'>CALIFICADOS</p>
                 </div>
                 <GrupoDeCardEventoSmall datos={eventos} />
-                <div>
-                    <p>PENDIENTES DE CALIFICAR</p>
+                <div className='text-center'>
+                    <p className='text-secondary h2'>PENDIENTES DE CALIFICAR</p>
                 </div>
                 <GrupoDeCardEventoSmall datos={eventos} />
             </div>
