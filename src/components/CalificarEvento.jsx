@@ -1,37 +1,53 @@
 import "../assets/icons/bootstrap-icons.css";
+import "./CalificarEvento.scss";
+import cardImage from "../assets/img/cards/card-image-1.webp";
+import { useState } from "react";
 
 export default function CalificarEvento() {
+  const [rating, setRating] = useState(0);
+
   return (
-    <div className="d-flex flex-column align-items-center bg-secondary p-4 gap-3 text-light">
-      <h2 className="fw-bold">Título del Evento</h2>
-        <img src="nombre-de-tu-imagen.jpg" alt="Descripción de la imagen" width="500" height="300"></img>      
+    <div className="calificar-container d-flex flex-column align-items-center custom-gradient p-4 gap-3 text-light">
+      <h2 className="fw-bold">Limpieza de la Playa de San Juan</h2>
+      
+      <img 
+        src={cardImage}
+        className="evento-img img-fluid rounded shadow" 
+        alt="Evento" 
+      />
+      
       <h3 className="fw-bold">¿Cómo calificarías este evento?</h3>
 
       <div className="d-flex align-items-center gap-3">
-        <div className="d-flex gap-2">
-          <i className="bi bi-star-fill"></i>
-          <i className="bi bi-star-fill"></i>
-          <i className="bi bi-star-fill"></i>
-          <i className="bi bi-star-fill"></i>
-          <i className="bi bi-star-fill"></i>
+        <div className="star-rating d-flex gap-2">
+          {[1, 2, 3, 4, 5].map((num) => (
+            <i
+              key={num}
+              className={`bi bi-star-fill star-icon ${num <= rating ? "active" : ""}`}
+              onClick={() => setRating(num)}
+            ></i>
+          ))}
         </div>
-        <button className="btn btn-sm btn-light text-secondary">Reset</button>
+        
+        <button 
+          className="btn btn-sm btn-light text-secondary fw-bold" 
+          onClick={() => setRating(0)}
+        >
+          Reset
+        </button>
       </div>
 
-      <div className="w-100" style={{ maxWidth: "500px" }}>
+      <div className="form-wrapper w-100">
         <label htmlFor="descripcionEvento" className="form-label">
           Descripción del evento:
         </label>
         <textarea
-          className="form-control bg-white"
+          className="form-control"
           id="descripcionEvento"
           rows={5}
-          placeholder="Describe el evento aquí..."
+          placeholder="Describe tu experiencia aquí..."
           required
         ></textarea>
-        <div className="invalid-feedback">
-          Desscribe tu experiencia.
-        </div>
       </div>
     </div>
   );
