@@ -1,15 +1,14 @@
 import "./App.scss";
 import Navbar from './components/Nav';
-import Login from './components/LoginRegistro';
 import Footer from './components/Footer';
 import Home from './pages/Home';
+import UserProfile from "./components/UserProfile";
 
 function App() {
   return (
 
     <>
-     <Navbar /> 
-     <Home/>
+    <UserProfile />
     <Footer/>
 
     {/* <Login/>  */}
