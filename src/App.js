@@ -7,10 +7,12 @@ import Home from './pages/Home';
 function App() {
   return (
 
-    <><Navbar />
-     <Login/>
-    <Home/>
+    <>
+     <Navbar /> 
+     <Home/>
     <Footer/>
+
+    {/* <Login/>  */}
     </>
   );
 }
