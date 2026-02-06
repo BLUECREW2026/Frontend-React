@@ -11,14 +11,14 @@ export default function UserProfile() {
   };
 
   return (
-    <section className="container py-5">
+    <section className="container p-5 mt-5 mb-5">
       
       {/* Tarjeta Principal */}
       <div className="card shadow rounded-4 p-4 p-md-5 bg-white border-0">
         <div className="row">
           
           {/* COLUMNA IZQUIERDA: Foto de Perfil */}
-          <div className="col-md-3 d-flex justify-content-center align-items-start mb-4 mb-md-0">
+          <div className="col-md-4 d-flex justify-content-center align-items-center mb-4 mb-md-0">
             <img 
               src={profilePhoto} 
               alt="Foto de perfil" 
@@ -28,10 +28,10 @@ export default function UserProfile() {
           </div>
 
           {/* COLUMNA DERECHA: Datos */}
-          <div className="col-md-9">
+          <div className="col-md-8">
             
             {/* Lista de Datos Personales */}
-            <div className="d-flex flex-column gap-3 mb-4">
+            <div className="d-flex flex-column justify-content-center gap-1 ms-4">
               <div className="d-flex align-items-baseline">
                 <p className="text-secondary fw-bolder me-2">Nombre:</p>
                 <span>{userData.nombre}</span>
@@ -55,7 +55,7 @@ export default function UserProfile() {
           </div>
         </div>
 
-        <div className="col-md-9 ms-4">
+        <div className="col-11 ms-4 mt-4">
             {/* Sección Biografía */}
             <div className="mb-4">
                 <h5 className="text-uppercase mb-3 text-secondary fw-bold">
@@ -68,7 +68,7 @@ export default function UserProfile() {
 
             {/* Botón de Acción */}
             <div>
-                <button className="btn btn-primary text-white fw-bold rounded-3 shadow-sm">
+                <button className="btn btn-primary text-white fw-bold rounded-3 shadow-sm p-3">
                 Modificar Datos Personales
                 </button>
             </div>
