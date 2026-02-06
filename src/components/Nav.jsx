@@ -3,6 +3,7 @@ import LogoDos from "../assets/logo/bluecrew-logo-complete-white.svg";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import DesplegableUsuario from "./DesplegableUsuario";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 
 export default function Navbar() {
@@ -74,15 +75,11 @@ export default function Navbar() {
                     <i className="bi bi-chevron-down small"></i>
                   </a>
                   
-                  <div className="collapse" id="menuUsuario">
+                  <div className="collapse" id="menuUsuario"> 
                     <ul className="nav flex-column ms-3 fs-6 gap-2 mt-2">
-                      <li><a className="nav-link text-white-50" href="#">Mi Cuenta</a></li>
-                      <li><a className="nav-link text-white-50" href="#">Mis Eventos</a></li>
-                      <li>
-                        <button className="nav-link text-danger" onClick={toggleLogin}>
-                          Cerrar Sesión
-                        </button>
-                      </li>
+                      <li><Link className="nav-link text-white-50" to="/perfil">Mi Cuenta</Link></li>
+                      <li><Link className="nav-link text-white-50" to="mis-eventos">Mis Eventos</Link></li>
+                       <li><Link className="nav-link text-danger" to="/" onClick={toggleLogin}>Mis Eventos</Link></li>
                     </ul>
                   </div>
                 </>
