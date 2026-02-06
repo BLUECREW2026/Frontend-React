@@ -1,11 +1,12 @@
 import "../assets/icons/bootstrap-icons.css";
 import "./DesplegableUsuario.scss";
+import { Link } from "react-router-dom";
 
 export default function DesplegableUsuario({ onLogout }) {
   return (
     <div className="dropdown d-flex align-items-center">
       <button
-        className="btn p-0 border-0 d-flex align-items-center shadow-none"
+        className="btn p-0 border-0 d-flex align-items-center shadow-none dropdown-toggle"
         type="button"
         data-bs-toggle="dropdown"
         aria-expanded="false"
@@ -13,36 +14,34 @@ export default function DesplegableUsuario({ onLogout }) {
         <i className="bi bi-person-circle text-secondary user-icon-btn"></i>
       </button>
 
-      <ul
-        className="dropdown-menu dropdown-menu-end shadow border-0 bg-white user-dropdown-menu"
-        aria-labelledby="userMenu"
-      >
+      <ul className="dropdown-menu dropdown-menu-end shadow border-0 bg-white user-dropdown-menu">
         <li>
-          <a
+          <Link
             className="dropdown-item d-flex align-items-center gap-2 py-2 text-secondary"
-            href="#"
+            to="/perfil"
           >
             <i className="bi bi-person"></i> Mi Cuenta
-          </a>
+          </Link>
         </li>
         <li>
-          <a
+          <Link
             className="dropdown-item d-flex align-items-center gap-2 py-2 text-secondary"
-            href="#"
+            to="/mis-eventos"
           >
             <i className="bi bi-calendar-event"></i> Mis Eventos
-          </a>
+          </Link>
         </li>
         <li>
           <hr className="dropdown-divider border-secondary" />
         </li>
         <li>
-          <button
+          <Link
             className="dropdown-item d-flex align-items-center gap-2 py-2 text-danger"
-            onClick={onLogout}
+            to="/" onClick={onLogout}
           >
-            <i className="bi bi-box-arrow-right"></i> Cerrar Sesión
-          </button>
+            <i className="bi bi-calendar-event"></i> Cerrar
+            Sesión
+          </Link>
         </li>
       </ul>
     </div>
