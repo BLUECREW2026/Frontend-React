@@ -1,4 +1,6 @@
 import Logo from "../assets/logo/bluecrew-logo-complete-white.svg";
+import Contacto from "../pages/Contacto"
+import { Link } from "react-router-dom";
 
 export default function Footer() {
     return (
@@ -60,12 +62,9 @@ export default function Footer() {
                         >
                             Aviso legal
                         </a>
-                        <a
-                            href="/contacto"
-                            className="text-white text-decoration-none fw-semibold"
-                        >
+                        <Link className="text-white text-decoration-none fw-semibold" to="/contacto">
                             Contacto
-                        </a>
+                        </Link>
                     </div>
 
                     {/* COLUMNA 4: Contacto e Info */}
