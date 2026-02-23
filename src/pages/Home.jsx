@@ -7,13 +7,12 @@ import { eventos } from '../data/Eventos';
 
 function Home() {
   return (
-
-    <>
+    <div className="flex-grow-1">
       <HeroSection />
       <SectionEstadisticas />
       <GrupoDeCardEvento datos={eventos} />
       <SectionONG />
-    </>
+    </div>
   );
 }
 

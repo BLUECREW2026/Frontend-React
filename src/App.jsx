@@ -10,17 +10,17 @@ import Privacidad from "./pages/Privacidad";
 
 function App() {
   return (
-    <>
+    <div className="d-flex flex-column min-vh-100">
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/mis-eventos" element={<MisEventos />} />
-        <Route path="/perfil" element={<UserProfile />} />
-        <Route path="/contacto" element={<Contacto />} />
-        <Route path="/privacidad" element={<Privacidad />} />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/mis-eventos" element={<MisEventos />} />
+          <Route path="/perfil" element={<UserProfile />} />
+          <Route path="/contacto" element={<Contacto />} />
+          <Route path="/privacidad" element={<Privacidad />} />
+        </Routes>
       <Footer />
-    </>
+    </div>
   );
 }
 
