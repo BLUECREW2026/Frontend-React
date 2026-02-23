@@ -8,6 +8,7 @@ import MisEventos from "./pages/MisEventos";
 import UserProfile from "./components/UserProfile";
 import Privacidad from "./pages/Privacidad";
 import Cookies from "./pages/Cookies";
+import AvisoLegal from "./pages/AvisoLegal";
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/privacidad" element={<Privacidad />} />
           <Route path="/cookies" element={<Cookies />} />
+          <Route path="/aviso-legal" element={<AvisoLegal />} />
+          <Route path="*" element={<h1 className="text-center my-5">404 - Página no encontrada</h1>} />
         </Routes>
       <Footer />
     </div>
