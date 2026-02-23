@@ -1,58 +1,42 @@
 export default function FormularioContacto() {
     return (
-        <div class="row justify-content-center mb-5">
-            <div class="col-lg-8 col-md-10">
-                <div class="card contact-card bg-light p-5 border-0 shadow">
-                    <div class="card-body">
-                        <h2 class="text-secondary fw-bolder mb-4 text-center">Formulario de Contacto</h2>
-                        <form class="needs-validation" novalidate>
-                            <div class="row">
+        <form className="needs-validation" noValidate>
+            <div className="row">
+                <div className="col-md-6 mb-3">
+                    {/* Corregimos for a htmlFor */}
+                    <label htmlFor="nombre" className="form-label fw-semibold">Nombre</label>
+                    <input type="text" className="form-control bg-light" id="nombre" placeholder="Tu nombre" required />
+                    <div className="invalid-feedback">Por favor, escribe tu nombre.</div>
+                </div>
 
-
-                                <div class="col-md-6 mb-3">
-                                    <label for="nombre" class="form-label">Nombre:</label>
-                                    <input type="text" class="form-control bg-white" id="nombre" placeholder="Tu nombre" required />
-                                    <div class="invalid-feedback">Por favor, escribe tu nombre.</div>
-                                </div>
-
-
-                                <div class="col-md-6 mb-3">
-                                    <label for="apellidos" class="form-label">Apellidos</label>
-                                    <input type="text" class="form-control bg-white" id="apellidos" placeholder="Tus apellidos"
-                                        required />
-                                    <div class="invalid-feedback">Por favor, escribe tus apellidos.</div>
-                                </div>
-                            </div>
-
-
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Dirección de correo electrónico</label>
-                                <input type="email" class="form-control bg-white" id="email" placeholder="nombre@ejemplo.com"
-                                    required />
-                                <div class="invalid-feedback">Introduce un correo electrónico válido.</div>
-                            </div>
-
-
-                            <div class="mb-3">
-                                <label for="direccion" class="form-label">Dirección (Opcional)</label>
-                                <input type="text" class="form-control bg-white" id="direccion"
-                                    placeholder="Calle, Ciudad, Código Postal" />
-                            </div>
-
-
-                            <div class="mb-4">
-                                <label for="mensaje" class="form-label">Preguntanos</label>
-                                <textarea class="form-control bg-white" id="mensaje" rows="5" placeholder="Escribe tu consulta aquí..."
-                                    required></textarea>
-                                <div class="invalid-feedback">El mensaje no puede estar vacío.</div>
-                            </div>
-
-
-                            <button type="submit" class="btn btn-secondary col-12">Enviar</button>
-                        </form>
-                    </div>
+                <div className="col-md-6 mb-3">
+                    <label htmlFor="apellidos" className="form-label fw-semibold">Apellidos</label>
+                    <input type="text" className="form-control bg-light" id="apellidos" placeholder="Tus apellidos" required />
+                    <div className="invalid-feedback">Por favor, escribe tus apellidos.</div>
                 </div>
             </div>
-        </div>
+
+            <div className="mb-3">
+                <label htmlFor="email" className="form-label fw-semibold">Dirección de correo electrónico</label>
+                <input type="email" className="form-control bg-light" id="email" placeholder="nombre@ejemplo.com" required />
+                <div className="invalid-feedback">Introduce un correo electrónico válido.</div>
+            </div>
+
+            <div className="mb-3">
+                <label htmlFor="direccion" className="form-label fw-semibold">Dirección (Opcional)</label>
+                <input type="text" className="form-control bg-light" id="direccion" placeholder="Calle, Ciudad, Código Postal" />
+            </div>
+
+            <div className="mb-4">
+                <label htmlFor="mensaje" className="form-label fw-semibold">Tu consulta</label>
+                <textarea className="form-control bg-light" id="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                <div className="invalid-feedback">El mensaje no puede estar vacío.</div>
+            </div>
+
+            {/* Cambiado col-12 por w-100 que es la utilidad correcta de Bootstrap para anchos al 100% */}
+            <button type="submit" className="btn btn-secondary w-100 fw-bold py-2">
+                Enviar mensaje
+            </button>
+        </form>
     );
 } 
