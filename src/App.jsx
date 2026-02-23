@@ -1,3 +1,4 @@
+import { Routes, Route } from "react-router-dom";
 import "./App.scss";
 import Navbar from "./components/Nav";
 import Footer from "./components/Footer";
@@ -5,8 +6,8 @@ import Home from "./pages/Home";
 import Contacto from "./pages/Contacto";
 import MisEventos from "./pages/MisEventos";
 import UserProfile from "./components/UserProfile";
-import { Routes, Route } from "react-router-dom";
 import Privacidad from "./pages/Privacidad";
+import Cookies from "./pages/Cookies";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/perfil" element={<UserProfile />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/privacidad" element={<Privacidad />} />
+          <Route path="/cookies" element={<Cookies />} />
         </Routes>
       <Footer />
     </div>
