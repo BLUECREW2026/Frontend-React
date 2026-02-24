@@ -1,4 +1,12 @@
-export default function EventDetails({ evento }) {
+import { useLocation } from 'react-router-dom';
+
+export default function EventDetails() {
+
+    const location = useLocation();
+
+    const evento = location.state?.evento;
+
+    if (!evento) return <p>Evento no encontrado...</p>;
     return (
         <section className="p-5 bg-light w-75 mx-auto shadow my-5 rounded-4">
             <div className="container">

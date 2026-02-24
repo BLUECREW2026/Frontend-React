@@ -48,6 +48,6 @@ export const eventos = [
         categoria: "Investigación/Ciencia",
         fecha: "2026-04-20",
         hora: "17:30",
-        ubicacion: "Playa de la Almadraba"
+        ubicacion: "Playa de la Almadraba"  
     }
 ];

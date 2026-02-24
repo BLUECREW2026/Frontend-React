@@ -7,6 +7,7 @@ export default function GrupoDeCardEvento({ datos }) {
                 {datos && datos.map((evento, index) => (
                     <CardEvento
                         key={index}
+                        id={index}
                         evento={evento}
                     />
                 ))}

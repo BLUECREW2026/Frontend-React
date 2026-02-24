@@ -1,7 +1,9 @@
-import EventDetails from "../components/EventDetails";
+import GrupoDeCardEvento from "../components/GrupoDeCardEvento";
 
-export default function Eventos({evento}) {
+export default function Eventos({ datos }) {
     return (
-        <EventDetails evento={evento}></EventDetails>
+        <>
+            <GrupoDeCardEvento datos={datos}></GrupoDeCardEvento>
+        </>
     );
 }

@@ -1,4 +1,7 @@
-export default function CardEvento({ evento }) {
+import { useNavigate } from "react-router-dom";
+
+export default function CardEvento({ evento, id }) {
+    const navigate = useNavigate();
     return (
         <div className="col p-3 d-flex">
             <article className="card rounded-4 p-3 bg-white shadow h-100 d-flex flex-column">
@@ -15,7 +18,8 @@ export default function CardEvento({ evento }) {
                         {evento.descripcion}
                     </p>
                     <div className="mt-auto text-center">
-                        <button className="btn btn-primary text-light fw-bold w-100">
+                        <button className="btn btn-primary text-light fw-bold w-100"
+                            onClick={() => navigate(`/eventos/${id}`, { state: { evento } })}>
                             Inscribirse
                         </button>
                     </div>
