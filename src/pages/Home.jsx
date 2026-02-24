@@ -6,13 +6,12 @@ import GrupoDeCardEvento from '../components/GrupoDeCardEvento';
 
 function Home({ datos }) {
   return (
-
-    <>
+    <div className="flex-grow-1">
       <HeroSection />
       <SectionEstadisticas />
       <GrupoDeCardEvento datos={datos} />
       <SectionONG />
-    </>
+    </div>
   );
 }
 
