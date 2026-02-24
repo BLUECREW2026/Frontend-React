@@ -7,9 +7,8 @@ export default function GrupoDeCardEvento({ datos }) {
                 {datos && datos.map((evento, index) => (
                     <CardEvento
                         key={index}
-                        imagen={evento.imagen}
-                        titulo={evento.titulo}
-                        descripcion={evento.descripcion}
+                        id={index}
+                        evento={evento}
                     />
                 ))}
             </div>

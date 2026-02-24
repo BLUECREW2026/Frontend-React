@@ -2,15 +2,14 @@ import HeroSection from '../components/HeroSection';
 import SectionEstadisticas from '../components/SectionEstadisticas';
 import SectionONG from '../components/SectionONG';
 import GrupoDeCardEvento from '../components/GrupoDeCardEvento';
-import { eventos } from '../data/Eventos';
 
 
-function Home() {
+function Home({ datos }) {
   return (
     <div className="flex-grow-1">
       <HeroSection />
       <SectionEstadisticas />
-      <GrupoDeCardEvento datos={eventos} />
+      <GrupoDeCardEvento datos={datos} />
       <SectionONG />
     </div>
   );
