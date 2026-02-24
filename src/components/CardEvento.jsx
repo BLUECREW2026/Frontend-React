@@ -11,12 +11,7 @@ export default function CardEvento({ imagen, titulo, descripcion }) {
                 </div>
                 <div className="card-body d-flex flex-column">
                     <h3 className="card-title h5">{titulo}</h3>
-                    <p className="card-text text-secondary mb-4" style={{
-                        display: '-webkit-box',
-                        WebkitLineClamp: '3',
-                        WebkitBoxOrient: 'vertical',
-                        overflow: 'hidden'
-                    }}>
+                    <p className="card-text text-secondary mb-4 text-muted">
                         {descripcion}
                     </p>
                     <div className="mt-auto text-center">
