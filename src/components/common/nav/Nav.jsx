@@ -1,5 +1,5 @@
-import Logo from "../assets/logo/bluecrew-logo-complete.svg";
-import LogoBlanco from "../assets/logo/bluecrew-logo-complete-white.svg";
+import Logo from "../../../assets/logo/bluecrew-logo-complete.svg"
+import LogoBlanco from "../../../assets/logo/bluecrew-logo-complete-white.svg";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import DesplegableUsuario from "./DesplegableUsuario";
 import { useState } from "react";
@@ -10,7 +10,7 @@ export default function Navbar() {
 
   const [isLogged, setIsLogged] = useState(false);
   const toggleLogin = () => setIsLogged(!isLogged);
-  
+
   return (
     <>
       <nav className="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top">
@@ -36,10 +36,10 @@ export default function Navbar() {
               <li className="nav-item"><NavLink className="nav-link text-secondary" to="/noticias">Noticias</NavLink></li>
               <li className="nav-item"><NavLink className="nav-link text-secondary" to="/sobre-nosotros">Sobre Nosotros</NavLink></li>
               <li className="nav-item"><NavLink className="nav-link text-secondary" to="/eventos">Eventos</NavLink></li>
-             
+
               <li className="nav-item ms-3">
                 {isLogged ? (
-                  <DesplegableUsuario onLogout={toggleLogin}/>
+                  <DesplegableUsuario onLogout={toggleLogin} />
                 ) : (
                   <button className="btn accent-button fw-bold px-4" onClick={toggleLogin}>
                     Únete
@@ -64,22 +64,22 @@ export default function Navbar() {
             <li><NavLink className="nav-link text-white" to="/noticias">Noticias</NavLink></li>
             <li><NavLink className="nav-link text-white" to="/sobre-nosotros">Sobre Nosotros</NavLink></li>
             <li><NavLink className="nav-link text-white" to="/eventos">Eventos</NavLink></li>
-            
+
             <li className="nav-item">
               {isLogged ? (
                 <>
-                  <a 
-                    className="nav-link text-white d-flex justify-content-between align-items-center" 
-                    href="#menuUsuario" 
-                    data-bs-toggle="collapse" 
-                    role="button" 
+                  <a
+                    className="nav-link text-white d-flex justify-content-between align-items-center"
+                    href="#menuUsuario"
+                    data-bs-toggle="collapse"
+                    role="button"
                     aria-expanded="false"
                   >
                     Usuario
                     <i className="bi bi-chevron-down small"></i>
                   </a>
-                  
-                  <div className="collapse" id="menuUsuario"> 
+
+                  <div className="collapse" id="menuUsuario">
                     <ul className="nav flex-column ms-3 fs-6 gap-2 mt-2">
                       <li><Link className="nav-link text-white-50" to="/perfil" data-bs-dismiss="offcanvas">Mi Cuenta</Link></li>
                       <li><Link className="nav-link text-white-50" to="mis-eventos" data-bs-dismiss="offcanvas">Mis Eventos</Link></li>
@@ -91,7 +91,7 @@ export default function Navbar() {
                 <Link className="btn accent-button fw-bold w-100 mt-4" to="/login" onClick={toggleLogin}>Únete</Link>
               )}
             </li>
-          </ul> 
+          </ul>
         </div>
       </div>
     </>

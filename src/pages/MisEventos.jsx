@@ -1,4 +1,4 @@
-import GrupoDeCardEventoSmall from '../components/GrupoDeCardEventoSmall';
+import GrupoDeCardEventoSmall from '../components/cards/GrupoDeCardEventoSmall';
 
 export default function MisEventos({ datos }) {
     return (

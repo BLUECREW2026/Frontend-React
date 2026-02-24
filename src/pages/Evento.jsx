@@ -1,4 +1,4 @@
-import EventDetails from "../components/EventDetails";
+import EventDetails from "../components/sections/EventDetails";
 
 export default function Eventos({evento}) {
     return (
