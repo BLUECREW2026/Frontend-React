@@ -1,4 +1,4 @@
-import img1 from '../assets/img/cards/card-image-1.webp';
+import img1 from '../../assets/img/cards/card-image-1.webp';
 
 export default function NewsDetails() {
     return (

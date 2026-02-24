@@ -1,4 +1,4 @@
-import GrupoDeCardEvento from "../components/GrupoDeCardEvento";
+import GrupoDeCardEvento from "../components/cards/GrupoDeCardEvento";
 
 export default function Eventos({ datos }) {
     return (

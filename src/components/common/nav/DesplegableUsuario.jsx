@@ -1,4 +1,4 @@
-import "../assets/icons/bootstrap-icons.css";
+import "../../../assets/icons/bootstrap-icons.css";
 import "./DesplegableUsuario.scss";
 import { Link } from "react-router-dom";
 

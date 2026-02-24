@@ -1,4 +1,4 @@
-import Logo from "../assets/logo/bluecrew-logo-complete-white.svg";
+import Logo from "../../assets/logo/bluecrew-logo-complete-white.svg";
 import { Link } from "react-router-dom";
 
 export default function Footer() {

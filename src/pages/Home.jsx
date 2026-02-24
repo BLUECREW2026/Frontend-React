@@ -1,7 +1,7 @@
-import HeroSection from '../components/HeroSection';
-import SectionEstadisticas from '../components/SectionEstadisticas';
-import SectionONG from '../components/SectionONG';
-import GrupoDeCardEvento from '../components/GrupoDeCardEvento';
+import HeroSection from '../components/sections/HeroSection';
+import SectionEstadisticas from '../components/sections/SectionEstadisticas';
+import SectionONG from '../components/sections/SectionONG';
+import GrupoDeCardEvento from '../components/cards/GrupoDeCardEvento';
 
 
 function Home({ datos }) {

@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.scss";
-import Navbar from "./components/Nav";
-import Footer from "./components/Footer";
+import Navbar from "./components/common/nav/Nav";
+import Footer from "./components/common/Footer";
 import Home from "./pages/Home";
 import Contacto from "./pages/Contacto";
 import MisEventos from "./pages/MisEventos";
-import UserProfile from "./components/UserProfile";
+import UserProfile from "./components/sections/UserProfile";
 import Privacidad from "./pages/Privacidad";
 import DetalleEvento from "./pages/Evento";
 import Eventos from "./pages/Eventos";
