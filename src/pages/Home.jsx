@@ -9,7 +9,7 @@ function Home({ datos }) {
     <div className="flex-grow-1">
       <HeroSection />
       <SectionEstadisticas />
-      <GrupoDeCardEvento datos={datos} />
+      <GrupoDeCardEvento datos={datos.slice(0, 4)} />
       <SectionONG />
     </div>
   );
