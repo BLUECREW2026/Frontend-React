@@ -9,7 +9,7 @@ npm install
 ```
 
 # Enlace de Despliegue
-https://funny-gingersnap-be4f70.netlify.app/
+https://bluecrewreact.netlify.app/
 
 # Compilar Sass y vigilar cambios (Watch mode)
 ```bash
