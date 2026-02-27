@@ -1,10 +1,12 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
+import { eventos } from "../../data/Eventos";
 
 export default function EventDetails() {
 
+    const { id } = useParams();
     const location = useLocation();
 
-    const evento = location.state?.evento;
+    const evento = location.state?.evento || eventos[parseInt(id)];
 
     if (!evento) return <p>Evento no encontrado...</p>;
     return (

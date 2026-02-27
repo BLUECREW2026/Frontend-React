@@ -10,8 +10,11 @@ import Privacidad from "./pages/Privacidad";
 import DetalleEvento from "./pages/Evento";
 import Eventos from "./pages/Eventos";
 import { eventos as data } from "./data/Eventos";
+import { noticias as not } from "./data/Noticias";
 import Cookies from "./pages/Cookies";
 import AvisoLegal from "./pages/AvisoLegal";
+import Noticias from "./pages/Noticias";
+import Noticia from "./pages/Noticia";
 
 function App() {
   return (
@@ -27,6 +30,8 @@ function App() {
         <Route path="/eventos/:id" element={<DetalleEvento />} />
         <Route path="/cookies" element={<Cookies />} />
         <Route path="/aviso-legal" element={<AvisoLegal />} />
+        <Route path="/noticias" element={<Noticias noticias={not} />} />
+        <Route path="/noticias/:id" element={<Noticia />} />
         <Route path="*" element={<h1 className="text-center my-5">404 - Página no encontrada</h1>} />
       </Routes>
       <Footer />
