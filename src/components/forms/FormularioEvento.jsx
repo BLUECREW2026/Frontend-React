@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, useMapEvents, useMap } from 'react-leaflet';
+import { useState } from 'react';
+import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
 import { Icon } from "leaflet";
-import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
+
 import "leaflet/dist/leaflet.css";
 import "leaflet-geosearch/dist/geosearch.css";
-
-// Importa tu icono personalizado
+import SearchField from "../common/SearchField"
 import geoIcon from "../../assets/icons/geo-alt-fill.svg";
 
 const customIcon = new Icon({
@@ -13,33 +12,6 @@ const customIcon = new Icon({
   iconSize: [38, 38],
   iconAnchor: [19, 38],
 });
-
-// Componente para el buscador dentro del mapa
-function SearchField({ onLocationFound }) {
-  const map = useMap();
-
-  useEffect(() => {
-    const provider = new OpenStreetMapProvider();
-    const searchControl = new GeoSearchControl({
-      provider: provider,
-      style: 'bar',
-      showMarker: false,
-      autoClose: true,
-      keepResult: true,
-      searchLabel: 'Busca una dirección...',
-    });
-
-    map.addControl(searchControl);
-
-    map.on('geosearch/showlocation', (result) => {
-      onLocationFound(result.location.label, result.location.y, result.location.x);
-    });
-
-    return () => map.removeControl(searchControl);
-  }, [map, onLocationFound]);
-
-  return null;
-}
 
 // Componente para capturar el click manual
 function ClickHandler({ onMapClick }) {
@@ -75,6 +47,7 @@ export default function Formulario_Evento() {
   // Función cuando se hace click en el mapa
   const handleMapClick = (lat, lng) => {
     setFormData(prev => ({ ...prev, lat, lng }));
+    console.log(lat + " " + lng)
   };
 
   const handleSubmit = (e) => {
@@ -182,11 +155,10 @@ export default function Formulario_Evento() {
                     onChange={handleInputChange}
                   />
 
-                  <div className="shadow-sm rounded-3 overflow-hidden border border-2 border-primary" style={{ width: "100%", height: "350px" }}>
+                  <div className="shadow-sm rounded-3 overflow-hidden border border-2 border-primary">
                     <MapContainer
                       center={[formData.lat, formData.lng]}
                       zoom={13}
-                      style={{ width: "100%", height: "100%" }}
                     >
                       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
