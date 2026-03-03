@@ -32,6 +32,14 @@ export default function DesplegableUsuario({ onLogout }) {
           </Link>
         </li>
         <li>
+          <Link
+            className="dropdown-item d-flex align-items-center gap-2 py-2 text-secondary"
+            to="/eventos/crear"
+          >
+            <i className="bi bi-geo-alt-fill"></i> Crear Eventos
+          </Link>
+        </li>
+        <li>
           <hr className="dropdown-divider border-secondary" />
         </li>
         <li>

@@ -15,6 +15,7 @@ import Cookies from "./pages/Cookies";
 import AvisoLegal from "./pages/AvisoLegal";
 import Noticias from "./pages/Noticias";
 import Noticia from "./pages/Noticia";
+import CrearEvento from "./pages/CrearEvento";
 import Login from "./pages/LoginRegistro";
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         <Route path="/aviso-legal" element={<AvisoLegal />} />
         <Route path="/noticias" element={<Noticias noticias={not} />} />
         <Route path="/noticias/:id" element={<Noticia />} />
+        <Route path="/eventos/crear" element={<CrearEvento />} />
         <Route path="*" element={<h1 className="text-center my-5">404 - Página no encontrada</h1>} />
         <Route path="/login" element={<Login />} />
       </Routes>
