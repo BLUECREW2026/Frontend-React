@@ -1,5 +1,9 @@
 import { useLocation, useParams } from 'react-router-dom';
 import { eventos } from "../../data/Eventos";
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import "leaflet/dist/leaflet.css";
+import geoIcon from "../../assets/icons/geo-alt-fill.svg";
+import { Icon } from "leaflet";
 
 export default function EventDetails() {
 
@@ -8,6 +12,14 @@ export default function EventDetails() {
 
     const evento = location.state?.evento || eventos[parseInt(id)];
 
+    const customIcon = new Icon({
+        iconUrl: geoIcon,
+        iconSize: [38, 38],
+        iconAnchor: [19, 38],
+        popupAnchor: [0, -38]
+    });
+
+    const position = [evento.lat || 40.4167, evento.lng || -3.7037];
     if (!evento) return <p>Evento no encontrado...</p>;
     return (
         <section className="p-5 bg-light w-75 mx-auto shadow my-5 rounded-4">
@@ -77,17 +89,32 @@ export default function EventDetails() {
                             <p>{evento.ubicacion}</p>
                         </div>
 
-                        {/* 4. MAPA (Google Maps Embed - Alicante) */}
-                        <div className="mb-5">
-                            {/* 'ratio' hace que el iframe sea responsive y mantenga la proporción */}
-                            <div className="ratio ratio-16x9 rounded-4 overflow-hidden border border-2 border-primary shadow-sm">
-                                <iframe
-                                    src="https://maps.google.com/maps?q=Playa%20del%20Postiguet%20Alicante&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                                    title="Mapa Ubicación Evento"
-                                    loading="lazy"
-                                    allowFullScreen
-                                ></iframe>
+                        <div className="mb-4">
+                            <h4 className="fw-bold text-primary mb-3">Ubicación en el mapa</h4>
+                            <div className="map-container-wrapper shadow-sm border border-2 border-primary">
+                                <MapContainer
+                                    center={position}
+                                    zoom={15}
+                                    scrollWheelZoom={false}
+                                >
+                                    <TileLayer
+                                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                    />
+                                    <Marker position={position} icon={customIcon}>
+                                        <Popup>
+                                            <div className="text-center">
+                                                <strong>{evento.titulo}</strong><br />
+                                                {evento.ubicacion}
+                                            </div>
+                                        </Popup>
+                                    </Marker>
+                                </MapContainer>
                             </div>
+                            <p className="mt-2 text-muted small italic">
+                                <i className="bi bi-geo-alt-fill me-1"></i>
+                                {evento.ubicacion}
+                            </p>
                         </div>
 
                         {/* 5. BOTÓN DE ACCIÓN (Inscribirse) */}
