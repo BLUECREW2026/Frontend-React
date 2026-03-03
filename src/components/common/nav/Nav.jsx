@@ -38,13 +38,19 @@ export default function Navbar() {
               <li className="nav-item"><NavLink className="nav-link text-secondary" to="/eventos">Eventos</NavLink></li>
 
               <li className="nav-item ms-3">
-                {isLogged ? (
+                {/* {isLogged ? (
                   <DesplegableUsuario onLogout={toggleLogin} />
                 ) : (
                   <button className="btn accent-button fw-bold px-4" onClick={toggleLogin}>
                     Únete
                   </button>
-                )}
+                )} */}
+
+                <NavLink to="/login">
+                <button className="btn accent-button fw-bold px-4"> 
+                    Únete
+                  </button>
+                  </NavLink>
               </li>
             </ul>
           </div>

@@ -1,0 +1,83 @@
+
+import { useState } from "react";
+import "./LoginRegistro.scss";
+
+export default function Login() {
+  const [registrado, setRegistrado] = useState(false);
+  
+  // 1. Estados para capturar los datos
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const toggleForm = () => setRegistrado((prev) => !prev);
+
+
+  const handleLogin = async (e) => {
+    e.preventDefault(); 
+
+    try {
+      const response = await fetch("http://localhost:8080/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+        credentials: "include", 
+      });
+
+      const data = await response.json();
+
+
+      if (response.ok) {
+        alert("¡Éxito! Bienvenido " + data.user);
+        
+      } else {
+        alert("Error: " + data.message); 
+      }
+    } catch (error) {
+      console.error("Error completo:", error); 
+      alert("No se pudo conectar con el servidor");
+    }
+  };
+
+  return (
+    <div className="login principal">
+      <div className={`login container ${registrado ? "active" : ""}`} id="container">
+        <div className="panel panel-izquierdo">
+          <h2>{registrado ? "Bienvenido" : "Crea tu cuenta"}</h2>
+          <button onClick={toggleForm}>{registrado ? "Login" : "Registro"}</button>
+        </div>
+
+        <div className="panel panel-derecho">
+         
+          <form className="form login" onSubmit={handleLogin}>
+            <h2>LOGIN</h2>
+            <input 
+              type="email" 
+              placeholder="Email" 
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)} 
+              required 
+            />
+            <input 
+              type="password" 
+              placeholder="Contraseña" 
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
+              required 
+            />
+            <button type="submit">Iniciar Sesión</button>
+          </form>
+
+          
+          <form className="form registro">
+             <h2>REGISTRO</h2>
+             <input type="text" placeholder="Nombre" required />
+             <input type="email" placeholder="Email" required />
+             <input type="password" placeholder="Contraseña" required />
+             <button type="submit">Registro</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}
+ // este ya funciona
