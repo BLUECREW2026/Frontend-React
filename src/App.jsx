@@ -1,4 +1,8 @@
-import { Routes, Route } from "react-router-dom";
+import {
+  Routes, // Eliminamos BrowserRouter as Router de aquí
+  Route,
+  Outlet,
+} from "react-router-dom";
 import "./App.scss";
 import Navbar from "./components/common/nav/Nav";
 import Footer from "./components/common/Footer";
@@ -16,29 +20,47 @@ import AvisoLegal from "./pages/AvisoLegal";
 import Noticias from "./pages/Noticias";
 import Noticia from "./pages/Noticia";
 import CrearEvento from "./pages/CrearEvento";
-import Login from "./pages/LoginRegistro";
+import Login from "./pages/Login/LoginRegistro";
+
+const MainLayout = () => {
+  return (
+    <>
+      <Navbar />
+      <Outlet />
+      <Footer />
+    </>
+  );
+};
 
 function App() {
   return (
-    <div className="d-flex flex-column min-vh-100">
-      <Navbar />
+    <div className="d-flex flex-column min-vh-100"> 
       <Routes>
-        <Route path="/" element={<Home datos={data} />} />
-        <Route path="/mis-eventos" element={<MisEventos datos={data} />} />
-        <Route path="/perfil" element={<UserProfile />} />
-        <Route path="/contacto" element={<Contacto />} />
-        <Route path="/privacidad" element={<Privacidad />} />
-        <Route path="/eventos" element={<Eventos datos={data} />} />
-        <Route path="/eventos/:id" element={<DetalleEvento />} />
-        <Route path="/cookies" element={<Cookies />} />
-        <Route path="/aviso-legal" element={<AvisoLegal />} />
-        <Route path="/noticias" element={<Noticias noticias={not} />} />
-        <Route path="/noticias/:id" element={<Noticia />} />
-        <Route path="/eventos/crear" element={<CrearEvento />} />
-        <Route path="*" element={<h1 className="text-center my-5">404 - Página no encontrada</h1>} />
+        
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<Home datos={data} />} />
+          <Route path="/mis-eventos" element={<MisEventos datos={data} />} />
+          <Route path="/perfil" element={<UserProfile />} />
+          <Route path="/contacto" element={<Contacto />} />
+          <Route path="/privacidad" element={<Privacidad />} />
+          <Route path="/eventos" element={<Eventos datos={data} />} />
+          <Route path="/eventos/:id" element={<DetalleEvento />} />
+          <Route path="/cookies" element={<Cookies />} />
+          <Route path="/aviso-legal" element={<AvisoLegal />} />
+          <Route path="/noticias" element={<Noticias noticias={not} />} />
+          <Route path="/noticias/:id" element={<Noticia />} />
+          <Route path="/eventos/crear" element={<CrearEvento />} />
+          <Route
+            path="*"
+            element={
+              <h1 className="text-center my-5">404 - Página no encontrada</h1>
+            }
+          />
+        </Route>
+
         <Route path="/login" element={<Login />} />
+        
       </Routes>
-      <Footer />
     </div>
   );
 }
