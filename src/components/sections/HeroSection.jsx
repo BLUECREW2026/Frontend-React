@@ -33,10 +33,6 @@ export default function HeroSection () {
               Encuentra y organiza voluntariados marinos en tu zona.<br />
               Juntos por el <span className="ods">ODS 14.</span>
             </h2>
-            <button className="accent-button btn btn-primary btn-lg px-5 py-2 fw-semibold border-0">
-              Únete a Nosotros
-            </button>
-
             {isLoggedIn ? (
               <Link
                 to="/eventos"
