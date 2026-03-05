@@ -1,12 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./LoginRegistro.scss";
 import videoFondo from "../../assets/login/video-fondo.mp4";
-
 
 export default function Login() {
   const [registrado, setRegistrado] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const toggleForm = () => setRegistrado((prev) => !prev);
 
@@ -21,7 +22,9 @@ export default function Login() {
       });
       const data = await response.json();
       if (response.ok) {
-        alert("¡Éxito! Bienvenido " + data.user);
+        localStorage.setItem("isLogged", "true");
+        localStorage.setItem("user", JSON.stringify(data.user));
+        navigate("/");
       } else {
         alert("Error: " + data.message);
       }
@@ -33,14 +36,25 @@ export default function Login() {
 
   return (
     <div className="login-page-wrapper">
-      
-      <video autoPlay loop muted playsInline className="video-fondo" src={videoFondo} />
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="video-fondo"
+        src={videoFondo}
+      />
 
       <div className="login principal">
-        <div className={`login container ${registrado ? "active" : ""}`} id="container">
+        <div
+          className={`login container ${registrado ? "active" : ""}`}
+          id="container"
+        >
           <div className="panel panel-izquierdo">
             <h2>{registrado ? "Bienvenido" : "Crea tu cuenta"}</h2>
-            <button onClick={toggleForm}>{registrado ? "Login" : "Registro"}</button>
+            <button onClick={toggleForm}>
+              {registrado ? "Login" : "Registro"}
+            </button>
           </div>
 
           <div className="panel panel-derecho">
@@ -77,4 +91,4 @@ export default function Login() {
   );
 }
 
-// este es el que funciona 
+// este es el que funciona
