@@ -21,7 +21,7 @@ export default function CardNoticias({ noticia, id }) {
                             {noticia.descripcion}
                         </p>
                         <div className="d-grid mt-4">
-                            <button className="btn btn-info text-white fw-medium rounded-3 py-2" onClick={() => navigate(`/noticias/${id}`, { state: { noticia } })}>
+                            <button className="btn btn-primary text-white fw-medium rounded-3 py-2" onClick={() => navigate(`/noticias/${id}`, { state: { noticia } })}>
                                 Leer más
                             </button>
                         </div>

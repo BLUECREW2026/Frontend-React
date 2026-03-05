@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
 import { Icon } from "leaflet";
+import { OpenStreetMapProvider } from 'leaflet-geosearch';
 
 import "leaflet/dist/leaflet.css";
 import "leaflet-geosearch/dist/geosearch.css";
@@ -16,8 +17,10 @@ const customIcon = new Icon({
 // Componente para capturar el click manual
 function ClickHandler({ onMapClick }) {
   useMapEvents({
-    click(e) {
-      onMapClick(e.latlng.lat, e.latlng.lng);
+    async click(e) {
+      const { lat, lng } = e.latlng;
+      // Llamamos a la función que pasamos por props
+      await onMapClick(lat, lng);
     },
   });
   return null;
@@ -35,6 +38,9 @@ export default function Formulario_Evento() {
     lng: -3.7037
   });
 
+  // Instanciamos el proveedor de búsqueda
+  const provider = useMemo(() => new OpenStreetMapProvider(), []);
+
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
@@ -45,9 +51,25 @@ export default function Formulario_Evento() {
   };
 
   // Función cuando se hace click en el mapa
-  const handleMapClick = (lat, lng) => {
-    setFormData(prev => ({ ...prev, lat, lng }));
-    console.log(lat + " " + lng)
+  const handleMapClick = async (lat, lng) => {
+    // 1. Actualizamos coordenadas para mover el marcador rápido
+    setFormData(prev => ({ ...prev, lat, lng, ubicacionTexto: "Buscando dirección..." }));
+
+    try {
+      // 2. Geocodificación Inversa: Convertir coordenadas en texto
+      const results = await provider.search({ query: `${lat}, ${lng}` });
+
+      if (results && results.length > 0) {
+        setFormData(prev => ({ ...prev, ubicacionTexto: results[0].label }));
+        console.log(results[0].label + " " + lat + " " + lng)
+      } else {
+        setFormData(prev => ({ ...prev, ubicacionTexto: `Lat: ${lat.toFixed(4)}, Lng: ${lng.toFixed(4)}` }));
+        console.log(lat + " " + lng)
+      }
+
+    } catch (error) {
+      console.error("Error al obtener la dirección:", error);
+    }
   };
 
   const handleSubmit = (e) => {
