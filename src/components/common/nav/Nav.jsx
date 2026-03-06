@@ -13,6 +13,7 @@ export default function Navbar() {
     localStorage.removeItem("isLogged");
     localStorage.removeItem("user");
     setIsLogged(false);
+    window.location.href = "/";
   };
 
   return (
