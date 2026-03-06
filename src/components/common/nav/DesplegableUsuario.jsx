@@ -44,8 +44,7 @@ export default function DesplegableUsuario({ onLogout }) {
         </li>
         <li>
           <Link
-            className="dropdown-item d-flex align-items-center gap-2 py-2 text-danger"
-            to="/" onClick={onLogout}
+            className="dropdown-item d-flex align-items-center gap-2 py-2 text-danger" onClick={onLogout}
           >
             <i className="bi bi-calendar-event"></i> Cerrar
             Sesión
