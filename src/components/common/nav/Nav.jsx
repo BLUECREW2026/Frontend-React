@@ -31,7 +31,6 @@ export default function Navbar() {
             data-bs-target="#menuLateral"
           >
             <i className="bi bi-list fs-2 text-secondary"></i>
-            
           </button>
 
           <div className="d-none d-md-flex ms-auto">
@@ -70,14 +69,11 @@ export default function Navbar() {
                     </button>
                   </NavLink>
                 )}
-
-               
               </li>
             </ul>
           </div>
         </div>
       </nav>
-
 
       <div
         className="offcanvas offcanvas-end bg-secondary d-md-none"
@@ -134,7 +130,6 @@ export default function Navbar() {
                         <Link
                           className="nav-link text-white-50"
                           to="/perfil"
-                          data-bs-dismiss="offcanvas"
                         >
                           Mi Cuenta
                         </Link>
@@ -142,18 +137,23 @@ export default function Navbar() {
                       <li>
                         <Link
                           className="nav-link text-white-50"
-                          to="mis-eventos"
-                          data-bs-dismiss="offcanvas"
+                          to="/mis-eventos"
                         >
                           Mis Eventos
                         </Link>
                       </li>
                       <li>
                         <Link
+                          className="nav-link text-white-50"
+                          to="/eventos/crear"
+                        >
+                          Crear Evento
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
                           className="nav-link text-danger"
-                          to="/"
                           onClick={logout}
-                          data-bs-dismiss="offcanvas"
                         >
                           Cerrar Sesión
                         </Link>
@@ -165,7 +165,6 @@ export default function Navbar() {
                 <Link
                   className="btn accent-button fw-bold w-100 mt-4"
                   to="/login"
-                  onClick={logout}
                 >
                   Únete
                 </Link>
