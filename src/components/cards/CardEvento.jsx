@@ -13,7 +13,7 @@ export default function CardEvento({ evento, id }) {
                     />
                 </div>
                 <div className="card-body d-flex flex-column">
-                    <h3 className="card-title h5">{evento.titulo}</h3>
+                    <h3 className="card-title h5 fw-bold">{evento.titulo}</h3>
                     <p className="card-text text-secondary mb-4 text-muted">
                         {evento.descripcion}
                     </p>
