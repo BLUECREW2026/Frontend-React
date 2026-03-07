@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import videoHero from "../../assets/img/hero/hero.mp4";
+import videoHero from "../../../assets/img/hero/hero.mp4";
 
 
 export default function SobreNosotros() {
   return (
-    <section className="hero-section d-flex align-items-center justify-content-center text-center text-white">
+    <section className="hero-section hero-nosotros d-flex align-items-center justify-content-center text-center text-white">
       <div className="container">
         <video
                         autoPlay
