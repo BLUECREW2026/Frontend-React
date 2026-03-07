@@ -16,6 +16,13 @@ export default function Navbar() {
     window.location.href = "/";
   };
 
+  const handleLinkClick = () => {
+    const closeBtn = document.querySelector("#menuLateral .btn-close");
+    if (closeBtn) {
+      closeBtn.click();
+    }
+  };
+
   return (
     <>
       <nav className="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top">
@@ -90,22 +97,22 @@ export default function Navbar() {
         <div className="offcanvas-body">
           <ul className="nav flex-column fs-5 gap-3">
             <li>
-              <NavLink className="nav-link text-white" to="/">
+              <NavLink className="nav-link text-white" to="/" onClick={handleLinkClick}>
                 Inicio
               </NavLink>
             </li>
             <li>
-              <NavLink className="nav-link text-white" to="/noticias">
+              <NavLink className="nav-link text-white" to="/noticias" onClick={handleLinkClick}>
                 Noticias
               </NavLink>
             </li>
             <li>
-              <NavLink className="nav-link text-white" to="/sobre-nosotros">
+              <NavLink className="nav-link text-white" to="/sobre-nosotros" onClick={handleLinkClick}>
                 Sobre Nosotros
               </NavLink>
             </li>
             <li>
-              <NavLink className="nav-link text-white" to="/eventos">
+              <NavLink className="nav-link text-white" to="/eventos" onClick={handleLinkClick}>
                 Eventos
               </NavLink>
             </li>
@@ -130,6 +137,7 @@ export default function Navbar() {
                         <Link
                           className="nav-link text-white-50"
                           to="/perfil"
+                          onClick={handleLinkClick}
                         >
                           Mi Cuenta
                         </Link>
@@ -138,6 +146,7 @@ export default function Navbar() {
                         <Link
                           className="nav-link text-white-50"
                           to="/mis-eventos"
+                          onClick={handleLinkClick}
                         >
                           Mis Eventos
                         </Link>
@@ -146,6 +155,7 @@ export default function Navbar() {
                         <Link
                           className="nav-link text-white-50"
                           to="/eventos/crear"
+                          onClick={handleLinkClick}
                         >
                           Crear Evento
                         </Link>
@@ -153,7 +163,7 @@ export default function Navbar() {
                       <li>
                         <Link
                           className="nav-link text-danger"
-                          onClick={logout}
+                          onClick={() => { logout(); handleLinkClick(); }}
                         >
                           Cerrar Sesión
                         </Link>
@@ -165,6 +175,7 @@ export default function Navbar() {
                 <Link
                   className="btn accent-button fw-bold w-100 mt-4"
                   to="/login"
+                  onClick={handleLinkClick}
                 >
                   Únete
                 </Link>
