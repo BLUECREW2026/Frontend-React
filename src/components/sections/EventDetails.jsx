@@ -1,9 +1,11 @@
 import { useLocation, useParams } from 'react-router-dom';
+import { useState, useEffect } from "react";
 import { eventos } from "../../data/Eventos";
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import "leaflet/dist/leaflet.css";
 import geoIcon from "../../assets/icons/geo-alt-fill.svg";
 import { Icon } from "leaflet";
+import clienteAxios from "../../config/axios"
 
 export default function EventDetails() {
 
@@ -20,6 +22,25 @@ export default function EventDetails() {
     });
 
     const position = [evento.lat || 40.4167, evento.lng || -3.7037];
+
+
+    const [datos, setDatos] = useState()
+
+    useEffect(() => {
+        const obtenerDatos = async () => {
+            try {
+                const response = await clienteAxios.get('/eventos/' + evento.id + '/inscripciones/cantidad');
+                setDatos(response.data);
+            } catch (error) {
+                console.error('Error al obtener los datos:', error);
+                setDatos(0);
+            }
+        };
+
+        obtenerDatos();
+    }, [evento.id]);
+
+
     if (!evento) return <p>Evento no encontrado...</p>;
     return (
         <section className="p-5 bg-light w-75 mx-auto shadow my-5 rounded-4">
@@ -54,32 +75,30 @@ export default function EventDetails() {
                         <div className="mb-4">
                             <h4 className="fw-bold text-primary mb-2">Descripción</h4>
                             <p>
-                                {evento.descripcion}
+                                {evento.descripcionEvento}
                             </p>
                         </div>
 
                         {/* Categoría */}
                         <div className="mb-4">
-                            <h4 className="fw-bold text-primary mb-2">Categoría</h4>
-                            <p>{evento.categoria}</p>
+                            <h4 className="fw-bold text-primary mb-2">Categoría: {evento.categoria}</h4>
+                            <p>{evento.descripcionCategoria}</p>
                         </div>
 
                         {/* Requisitos (Lista) */}
                         <div className="mb-4">
                             <h4 className="fw-bold text-primary mb-2">Requisitos</h4>
-                            <ul className="list-unstyled">
-                                <li><i className="bi bi-check-circle-fill text-primary me-2"></i>Ser mayor de 16 años (o venir acompañado).</li>
-                                <li><i className="bi bi-check-circle-fill text-primary me-2"></i>Llevar ropa cómoda y calzado deportivo.</li>
-                                <li><i className="bi bi-check-circle-fill text-primary me-2"></i>Traer botella de agua reutilizable (evitemos plásticos).</li>
-                            </ul>
+                            <p className='text-primary'>
+                                {evento.material}
+                            </p>
                         </div>
 
                         {/* Fecha y Hora */}
                         <div className="mb-4">
                             <h4 className="fw-bold text-primary mb-2">Fecha y Hora</h4>
                             <p className="fw-bold text-secondary">
-                                <i className="bi bi-calendar-event me-2"></i> {evento.fecha} <br />
-                                <i className="bi bi-clock me-2"></i> {evento.hora}
+                                <i className="bi bi-calendar-event me-2"></i> {evento.fechaDisplay} <br />
+                                <i className="bi bi-clock me-2"></i> {evento.horaDisplay}
                             </p>
                         </div>
 
@@ -123,7 +142,7 @@ export default function EventDetails() {
                                 Inscribirse al Evento
                             </button>
                             <p className="text-muted small mt-2">
-                                * Plazas limitadas (15/30 ocupadas)
+                                * Plazas limitadas ({datos}/{evento.participantes} ocupadas)
                             </p>
                         </div>
 
