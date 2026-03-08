@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
 
-export default function CardNoticias({ noticia, id }) {
+export default function CardNoticias({ noticia, id , noticias }) {
     const navigate = useNavigate();
     return (
         <div className="card mb-3 news-card-container shadow-sm border-0 bg-white">
             <div className="row g-0 align-items-center p-3">
                 <div className="col-md-5">
                     <img
-                        src={noticia.imagen}
+                        src={`/img/cards/${noticia.imagen}`}
                         className="img-fluid rounded-4 object-fit-cover border border-primary border-2"
                         alt="Noticia"
                     />
@@ -21,7 +21,7 @@ export default function CardNoticias({ noticia, id }) {
                             {noticia.descripcion}
                         </p>
                         <div className="d-grid mt-4">
-                            <button className="btn btn-primary text-white fw-medium rounded-3 py-2" onClick={() => navigate(`/noticias/${id}`, { state: { noticia } })}>
+                            <button className="btn btn-primary text-white fw-medium rounded-3 py-2" onClick={() => navigate(`/noticias/${id}`, { state: { noticia, noticias } })}>
                                 Leer más
                             </button>
                         </div>
