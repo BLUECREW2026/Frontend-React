@@ -1,18 +1,14 @@
 import GrupoDeCardEventoSmall from "../components/cards/GrupoDeCardEventoSmall";
 
-export default function MisEventos({ datos }) {
+export default function Participaciones({ datos }) {
   return (
     <div className="flex-grow-1 mt-5">
       <div className="text-center">
-        <p className="text-secondary h2">INSCRITO</p>
-      </div>
-      <GrupoDeCardEventoSmall datos={datos} />
-      <div className="text-center">
-        <p className="text-secondary h2">PUBLICADOS</p>
+        <p className="text-secondary h2">CALIFICADOS</p>
       </div>
       <GrupoDeCardEventoSmall datos={datos} />
        <div className="text-center">
-        <p className="text-secondary h2">PENDIENTES DE APROBACIÓN</p>
+        <p className="text-secondary h2">PENDIENTES DE CALIFICAR</p>
       </div>
       <GrupoDeCardEventoSmall datos={datos} />
     </div>
