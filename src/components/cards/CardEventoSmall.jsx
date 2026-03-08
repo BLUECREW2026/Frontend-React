@@ -8,7 +8,9 @@ export default function CardEvento({ imagen, titulo}) {
                         alt={titulo} />
                 </div>
                 <div className="card-body">
-                    <h3 className="card-title">{titulo}</h3>
+                    <h3 className="card-title h5  mt-2 text-truncate" title={titulo}>
+                        {titulo}
+                    </h3>
                 </div>
             </article>
         </div>

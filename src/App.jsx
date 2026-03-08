@@ -9,6 +9,7 @@ import Footer from "./components/common/Footer";
 import Home from "./pages/Home";
 import Contacto from "./pages/Contacto";
 import MisEventos from "./pages/MisEventos";
+import Participaciones from "./pages/Participaciones";
 import UserProfile from "./components/sections/UserProfile";
 import Privacidad from "./pages/Privacidad";
 import DetalleEvento from "./pages/Evento";
@@ -41,6 +42,7 @@ function App() {
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home datos={data} />} />
           <Route path="/mis-eventos" element={<MisEventos datos={data} />} />
+          <Route path="/participaciones" element={<Participaciones datos={data} />} />
           <Route path="/perfil" element={<UserProfile />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/privacidad" element={<Privacidad />} />
