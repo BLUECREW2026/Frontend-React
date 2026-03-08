@@ -29,8 +29,12 @@ export default function Login() {
         credentials: "include",
       });
       const data = await response.json();
+      console.log("Respuesta del servidor al hacer login:", data);
       if (response.ok) {
         localStorage.setItem("isLogged", "true");
+
+        localStorage.setItem("usuarioId", data.id);
+
         localStorage.setItem("user", JSON.stringify(data.user));
         navigate("/");
       } else {
@@ -62,7 +66,7 @@ export default function Login() {
         alert("¡Registro exitoso! Ahora puedes iniciar sesión.");
 
         localStorage.setItem("isLogged", "true");
-        localStorage.setItem("user", JSON.stringify(data.usuario || data.user)); // Ajustado por si acaso
+        localStorage.setItem("user", JSON.stringify(data.usuario || data.user)); 
         navigate("/");
       } else {
         alert("Error: " + (data.error || data.message || "Error al registrar"));
