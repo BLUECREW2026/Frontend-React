@@ -26,6 +26,7 @@ import CrearEvento from "./pages/CrearEvento";
 import Login from "./pages/Login/LoginRegistro";
 import SobreNosotros from "./pages/SobreNosotros";
 import PagOng from "./pages/Ong";
+import CalificarEvento from "./components/forms/CalificarEvento/CalificarEvento"
 
 const MainLayout = () => {
   return (
@@ -90,6 +91,7 @@ function App() {
           <Route path="/sobre-nosotros" element={<SobreNosotros />} />
           <Route path="/eventos/crear" element={<CrearEvento />} />
           <Route path="/ong" element={<PagOng />} />
+          <Route path="/participaciones/calificar-evento/:id" element={<CalificarEvento />} />
           <Route
             path="*"
             element={
