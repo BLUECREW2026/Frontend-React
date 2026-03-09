@@ -1,14 +1,14 @@
 import CardEventoSmall from "./CardEventoSmall";
 
-export default function GrupoDeCardEvento({ datos }) {
+export default function GrupoDeCardEvento({ datos, ruta }) {
     return (
-        <section class="container mb-5">
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
+        <section className="container mb-5">
+            <div className="row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4 align-items-stretch">
                 {datos && datos.map((evento, index) => (
                     <CardEventoSmall
                         key={index}
-                        imagen={evento.imagen}
-                        titulo={evento.titulo}
+                        evento={evento}
+                        ruta={ruta}
                     />
                 ))}
             </div>
