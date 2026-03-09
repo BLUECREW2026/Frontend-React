@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
-// import videoHero from "../../../assets/img/ong/hero-ong.mp4";
+
+import videoHero from "../../../assets/hero/video-ong.mp4";
+
 
 
 export default function HeroOng() {
+
   return (
     <section className="hero-section hero-nosotros d-flex align-items-center justify-content-center text-center text-white">
       <div className="container">
@@ -18,7 +21,7 @@ export default function HeroOng() {
         */}
         <div className="row justify-content-center">
           <div className="col-lg-10">
-            <h1 className="texto-animadodisplay-3 fw-bold mb-3 hero-title">
+            <h1 className=" titulo-ongdisplay-4 fw-bold mb-3 hero-title ">
               ¿Eres una ONG? Súmate y comparte tu causa con el mundo
             </h1>
             <Link
