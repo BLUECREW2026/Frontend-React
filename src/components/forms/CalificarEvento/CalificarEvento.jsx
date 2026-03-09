@@ -11,10 +11,29 @@ export default function CalificarEvento() {
   const [comentario, setComentario] = useState("");
 
   const handleSubmit = async () => {
-    console.log("Rating:", rating);
-    console.log("Comentario:", comentario);
-  };
 
+    console.log(parseInt(localStorage.getItem("usuarioId")) + " " + evento.id + " " + rating + " " + comentario);
+
+    const nuevaCalificacion = {
+      usuarioId: parseInt(localStorage.getItem("usuarioId")),
+      eventoId: evento.id,
+      calificacion: rating,
+      comentario: comentario
+    };
+
+    try {
+      const respuesta = await clienteAxios.post("/calificaciones", nuevaCalificacion);
+
+      if (respuesta.status === 201) {
+        navigate("/participaciones");
+      }
+    } catch (error) {
+      console.error("Error al enviar la calificación:", error);
+
+      const mensajeError = error.response?.data?.error || "Error al conectar con el servidor";
+      alert("Hubo un problema: " + mensajeError);
+    }
+  };
   if (!evento) {
     return (
       <div className="text-center my-5">
