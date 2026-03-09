@@ -1,11 +1,7 @@
 import "./Ong.scss";
 
 export default function InfOng() {
-  const importarTodo = (r) => r.keys().map(r);
-  const logos = importarTodo(
-    require.context("../../../assets/ong", false, /\.(png|jpe?g|svg)$/),
-  );
-
+ 
   return (
     <div>
       <section className="container py-5 my-4 text-center">
@@ -33,27 +29,8 @@ export default function InfOng() {
           </div>
         </div>
       </section>
-      <div className="colaboradores-section bg-dark py-5 position-relative">
-        <div className="container-fluid text-center overflow-hidden">
-          <h3 className="text-white mb-5 fw-normal">COLABORAMOS CON:</h3>
-
-          <div className="slider-logos">
-            <div className="slide-track">
-              {logos.map((logo, index) => (
-                <div className="slide" key={`logo-original-${index}`}>
-                  <img src={logo} alt={`Colaborador ${index}`} />
-                </div>
-              ))}
-
-              {logos.map((logo, index) => (
-                <div className="slide" key={`logo-duplicado-${index}`}>
-                  <img src={logo} alt={`Colaborador ${index}`} />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
+      
     </div>
+    // prueba de recuperacion de datos
   );
 }
