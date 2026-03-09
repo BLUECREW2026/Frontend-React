@@ -19,7 +19,7 @@ const currentIndex = noticias.findIndex(n => String(n.idNoticia) === id);
         <div className="row justify-content-center mb-4">
           <div className="col-lg-8 text-center">
                         {/* Etiqueta opcional (Categoría) */}
-            <span className="badge bg-secondary text-white mb-2">Vida Marina</span>
+            <span className="badge bg-secondary text-white mb-2">{noticia.categoria.nombreCategoria}</span>
 
             <h1 className="fw-bold text-primary display-5 mb-3">
               {noticia.titulo}
@@ -54,7 +54,7 @@ const currentIndex = noticias.findIndex(n => String(n.idNoticia) === id);
 
                         {/* Cita destacada (opcional pero queda muy bien en blogs) */}
             <blockquote className="border-start border-4 border-primary ps-4 fst-italic my-4 text-dark">
-                            "Proin consequat odio ante, ultrices dapibus eros eleifend sed. Morbi nec turpis dolor."
+                            {noticia.citaDestacada || "La vida marina es un tesoro que debemos proteger y preservar para las generaciones futuras."}
             </blockquote>
 
 
