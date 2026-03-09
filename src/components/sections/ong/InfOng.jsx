@@ -31,5 +31,6 @@ export default function InfOng() {
       </section>
       
     </div>
+    // prueba de recuperacion de datos
   );
 }
