@@ -14,6 +14,7 @@ export default function UserProfile() {
     email: "",
     localidad: "",
     bio: "",
+    eventosCompletados: 0,
   });
 
   useEffect(() => {
@@ -39,6 +40,7 @@ export default function UserProfile() {
             email: datosReales.email || "",
             localidad: "sin ubicacion",
             bio: datosReales.biografia || "Sin biografia ",
+            eventosCompletados: datosReales.eventosCompletados || 0,
           });
         } else {
           console.error("Error: El servidor respondió pero no con OK.");
@@ -170,12 +172,20 @@ export default function UserProfile() {
             />
           </div>
           <div className="mt-auto text-center">
+            {userData.eventosCompletados >= 5 ? (
             <Link 
               to="/eventos/crear" 
               className="btn btn-primary text-light fw-bold w-100 rounded-3 py-2"
             >
               Crear Evento
+            </Link>): (
+              <Link 
+              to="/eventos/crear" 
+              className="btn btn-primary text-light fw-bold w-100 rounded-3 py-2 disabled"
+            >
+              Crear Evento
             </Link>
+            )}
           </div>
         </div>
 
