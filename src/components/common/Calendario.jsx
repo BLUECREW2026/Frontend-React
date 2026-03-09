@@ -10,7 +10,7 @@ export default function Calendario({ value, setValue }) {
                 startDate={value.start}
                 endDate={value.end}
                 selectsRange={true}
-                dateFormat="yyyy-MM-dd"
+                dateFormat="dd-MM-yyyy"
                 onChange={(update) => {
                     const [start, end] = update;
                     setValue({ start, end });
