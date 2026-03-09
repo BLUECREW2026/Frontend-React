@@ -12,5 +12,3 @@ export default function Ong() {
         </div>
     );
 }
-
-// funcionando 
