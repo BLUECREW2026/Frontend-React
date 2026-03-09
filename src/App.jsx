@@ -14,8 +14,10 @@ import UserProfile from "./components/sections/UserProfile";
 import Privacidad from "./pages/Privacidad";
 import DetalleEvento from "./pages/Evento";
 import Eventos from "./pages/Eventos";
-import { eventos as data } from "./data/Eventos";
 import { noticias as not } from "./data/Noticias";
+import { useState, useEffect } from "react";
+import clienteAxios from "./config/axios"
+import { formatearFechaHora } from "./utilities/formatearFechaHora"
 import Cookies from "./pages/Cookies";
 import AvisoLegal from "./pages/AvisoLegal";
 import Noticias from "./pages/Noticias";
@@ -35,18 +37,50 @@ const MainLayout = () => {
 };
 
 function App() {
+  const [datos, setDatos] = useState([])
+
+  useEffect(() => {
+    const obtenerDatos = async () => {
+      try {
+        const response = await clienteAxios.get('/eventos/activos');
+        const eventosFormateados = response.data.map(item => {
+          const { fecha, hora } = formatearFechaHora(item[4]);
+
+          return {
+            id: item[0],
+            titulo: item[1],
+            imagen: item[2],
+            descripcionEvento: item[3],
+            fechaDisplay: fecha,
+            horaDisplay: hora,
+            categoria: item[5],
+            descripcionCategoria: item[6],
+            material: item[7],
+            ubicacion: item[8],
+            participantes: item[9]
+          };
+        });
+
+        setDatos(eventosFormateados);
+      } catch (error) {
+        console.error('Error al obtener los datos:', error);
+      }
+    };
+
+    obtenerDatos();
+  }, []);
   return (
-    <div className="d-flex flex-column min-vh-100"> 
+    <div className="d-flex flex-column min-vh-100">
       <Routes>
-        
+
         <Route element={<MainLayout />}>
-          <Route path="/" element={<Home datos={data} />} />
-          <Route path="/mis-eventos" element={<MisEventos datos={data} />} />
-          <Route path="/participaciones" element={<Participaciones datos={data} />} />
+          <Route path="/" element={<Home datos={datos} />} />
+          <Route path="/mis-eventos" element={<MisEventos datos={datos} />} />
+          <Route path="/participaciones" element={<Participaciones datos={datos} />} />
           <Route path="/perfil" element={<UserProfile />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/privacidad" element={<Privacidad />} />
-          <Route path="/eventos" element={<Eventos datos={data} />} />
+          <Route path="/eventos" element={<Eventos datos={datos} />} />
           <Route path="/eventos/:id" element={<DetalleEvento />} />
           <Route path="/cookies" element={<Cookies />} />
           <Route path="/aviso-legal" element={<AvisoLegal />} />
@@ -63,7 +97,7 @@ function App() {
         </Route>
 
         <Route path="/login" element={<Login />} />
-        
+
       </Routes>
     </div>
   );
