@@ -160,6 +160,15 @@ export default function Navbar() {
                           Crear Evento
                         </Link>
                       </li>
+                       <li>
+                        <Link
+                          className="nav-link text-white-50"
+                          to="/participaciones"
+                          onClick={handleLinkClick}
+                        >
+                          Participaciones
+                        </Link>
+                      </li>
                       <li>
                         <Link
                           className="nav-link text-danger"
