@@ -25,6 +25,7 @@ import Noticia from "./pages/Noticia";
 import CrearEvento from "./pages/CrearEvento";
 import Login from "./pages/Login/LoginRegistro";
 import SobreNosotros from "./pages/SobreNosotros";
+import PagOng from "./pages/Ong";
 
 const MainLayout = () => {
   return (
@@ -88,6 +89,7 @@ function App() {
           <Route path="/noticias/:id" element={<Noticia />} />
           <Route path="/sobre-nosotros" element={<SobreNosotros />} />
           <Route path="/eventos/crear" element={<CrearEvento />} />
+          <Route path="/ong" element={<PagOng />} />
           <Route
             path="*"
             element={

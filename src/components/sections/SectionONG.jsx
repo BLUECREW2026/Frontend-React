@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 export default function ONGSection() {
   return (
     <section>
@@ -9,9 +10,16 @@ export default function ONGSection() {
               Organiza tus propios eventos y recluta voluntarios para tus
               iniciativas de conservación marina.
             </p>
-            <button type="button" className="btn btn-primary text-white">
+           
+
+            <div className="btn btn-primary text-white">
+            <Link 
+              to="/ong" 
+              className="btn btn-primary text-light fw-bold w-100 rounded-3 py-2"
+            >
               Saber más
-            </button>
+            </Link>
+          </div>
           </div>
         </div>
       </div>
