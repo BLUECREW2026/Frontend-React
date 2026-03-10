@@ -25,7 +25,7 @@ const ContadorAnimado = ({ valorFinal, duracion = 2000 }) => {
     return () => clearInterval(temporizador);
   }, [valorFinal, duracion]);
 
-  return <span>{conteo.toLocaleString()}</span>;
+return <span>{(conteo ?? 0).toLocaleString()}</span>;
 };
 
 export default function Estadisticas() {
