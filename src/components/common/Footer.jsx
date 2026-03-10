@@ -44,7 +44,7 @@ export default function Footer() {
                 </div>
             </div>
             {/* BARRA DE COPYRIGHT (Fondo oscurecido) */}
-            <div className="copyright text-center p-3">
+            <div className="bg-secondary-dark text-center p-3">
                 <span className="small">
                     &copy; {new Date().getFullYear()} BlueCrew. Todos los derechos
                     reservados.

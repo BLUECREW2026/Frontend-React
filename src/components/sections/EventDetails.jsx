@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { eventos } from "../../data/Eventos";
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import "leaflet/dist/leaflet.css";
+import "./EventDetails.scss";
 import geoIcon from "../../assets/icons/geo-alt-fill.svg";
 import { Icon } from "leaflet";
 import clienteAxios from "../../config/axios"
