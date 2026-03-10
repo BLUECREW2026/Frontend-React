@@ -6,10 +6,10 @@ import clienteAxios from "../config/axios"
 import { useState, useEffect } from "react";
 import { formatearFechaHora } from "../utilities/formatearFechaHora"
 import Carrucel from '../components/common/carrucel';
-
+import LoginModal from "../components/sections/LoginModal/LoginModal";
 
 function Home() {
-
+  const [openModal, setOpenModal] = useState(false);
   const [datos, setDatos] = useState([])
 
   useEffect(() => {
@@ -43,17 +43,17 @@ function Home() {
     obtenerDatos();
   }, []);
 
-  
+
 
   return (
     <div className="flex-grow-1">
       <HeroSection />
       <SectionEstadisticas />
-      <GrupoDeCardEvento datos={datos.slice(0, 4)} />
+      <GrupoDeCardEvento datos={datos.slice(0, 4)} setOpenModal={setOpenModal} />
       <SectionONG />
       <Carrucel />
+      <LoginModal open={openModal} setOpenModal={setOpenModal} />
 
-      
     </div>
   );
 }
