@@ -1,7 +1,15 @@
 import { useNavigate } from "react-router-dom";
 
-export default function CardEvento({ evento, id }) {
+export default function CardEvento({ evento, id, setOpenModal }) {
     const navigate = useNavigate();
+
+    const handleClick = () => {
+        if (localStorage.getItem("usuarioId")) {
+            navigate(`/eventos/${id}`, { state: { evento } });
+        } else {
+            setOpenModal(true);
+        }
+    };
     return (
         <div className="col p-3 d-flex align-items-stretch">
             <article className="card rounded-4 p-3 bg-white shadow h-100 w-100 d-flex flex-column">
@@ -19,7 +27,7 @@ export default function CardEvento({ evento, id }) {
                     </p>
                     <div className="mt-auto text-center">
                         <button className="btn btn-primary text-light fw-bold w-100"
-                            onClick={() => navigate(`/eventos/${id}`, { state: { evento } })}>
+                            onClick={() => handleClick()}>
                             Inscribirse
                         </button>
                     </div>

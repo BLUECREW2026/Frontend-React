@@ -1,6 +1,6 @@
 import CardEvento from "./CardEvento";
 
-export default function GrupoDeCardEvento({ datos }) {
+export default function GrupoDeCardEvento({ datos, setOpenModal }) {
     return (
         <section className="container mb-5">
             <div className="row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4 align-items-stretch">
@@ -9,6 +9,7 @@ export default function GrupoDeCardEvento({ datos }) {
                         key={index}
                         id={index}
                         evento={evento}
+                        setOpenModal={setOpenModal}
                     />
                 ))}
             </div>
