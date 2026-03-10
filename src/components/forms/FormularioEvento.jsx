@@ -4,6 +4,7 @@ import { Icon } from "leaflet";
 
 import "leaflet/dist/leaflet.css";
 import "leaflet-geosearch/dist/geosearch.css";
+import "./FormularioEvento.scss";
 import SearchField from "../common/SearchField"
 import geoIcon from "../../assets/icons/geo-alt-fill.svg";
 

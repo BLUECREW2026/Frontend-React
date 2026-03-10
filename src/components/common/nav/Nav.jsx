@@ -4,6 +4,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import DesplegableUsuario from "./DesplegableUsuario";
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import "./Nav.scss";
 
 export default function Navbar() {
   const [isLogged, setIsLogged] = useState(
@@ -72,7 +73,7 @@ export default function Navbar() {
                   <DesplegableUsuario onLogout={logout} />
                 ) : (
                   <NavLink to="/login">
-                    <button className="btn accent-button fw-bold px-4">
+                    <button className="btn btn-accent text-dark fw-bold px-4">
                       Únete
                     </button>
                   </NavLink>
@@ -183,7 +184,7 @@ export default function Navbar() {
                 </>
               ) : (
                 <Link
-                  className="btn accent-button fw-bold w-100 mt-4"
+                  className="btn btn-accent text-dark fw-bold w-100 mt-4"
                   to="/login"
                   onClick={handleLinkClick}
                 >
