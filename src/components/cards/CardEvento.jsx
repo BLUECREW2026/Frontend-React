@@ -1,14 +1,22 @@
 import { useNavigate } from "react-router-dom";
+import { IMAGES_BASE_URL } from "../../config/axios";
 
 export default function CardEvento({ evento, id, setOpenModal }) {
     const navigate = useNavigate();
 
+<<<<<<< feature/dinamic-images
+    const obtenerImagen = (nombreImagen) => {
+        if (!nombreImagen) return "/img/cards/card-image-2.webp";
+        if (nombreImagen.startsWith('http')) return nombreImagen;
+        return `${IMAGES_BASE_URL}${nombreImagen}`;
+=======
     const handleClick = () => {
         if (localStorage.getItem("usuarioId")) {
             navigate(`/eventos/${id}`, { state: { evento } });
         } else {
             setOpenModal(true);
         }
+>>>>>>> main
     };
     return (
         <div className="col p-3 d-flex align-items-stretch">
@@ -16,8 +24,9 @@ export default function CardEvento({ evento, id, setOpenModal }) {
                 <div className="ratio ratio-4x3">
                     <img
                         className="card-img-top rounded-4 object-fit-cover border border-primary border-2"
-                        src={evento.imagen}
+                        src={obtenerImagen(evento.imagen)}
                         alt={evento.titulo}
+                        onError={(e) => { e.target.onerror = null; e.target.src = "/img/cards/card-image-2.webp"; }}
                     />
                 </div>
                 <div className="card-body d-flex flex-column">

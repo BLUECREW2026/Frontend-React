@@ -17,7 +17,7 @@ export default function Contacto() {
 
                 {/* COLUMNA IZQUIERDA: Información de contacto */}
                 <div className="col-12 col-md-5 col-lg-4">
-                    <div className="custom-gradient text-white p-4 p-md-5 rounded shadow h-100 d-flex flex-column">
+                    <div className="bg-gradient-primary-secondary text-white p-4 p-md-5 rounded shadow h-100 d-flex flex-column">
                         <h3 className="h4 mb-4 fw-bold">Información</h3>
                         <p className="mb-5 text-white-50">
                             Rellena el formulario y el equipo de coordinación de BlueCrew te responderá lo antes posible.

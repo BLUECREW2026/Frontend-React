@@ -1,15 +1,23 @@
 import { useNavigate } from "react-router-dom";
+import { IMAGES_BASE_URL } from "../../config/axios";
 
-export default function CardNoticias({ noticia, id , noticias }) {
+export default function CardNoticias({ noticia, id, noticias }) {
     const navigate = useNavigate();
+
+    const obtenerImagen = (nombreImagen) => {
+        if (!nombreImagen) return "/img/cards/card-image-1.webp";
+        if (nombreImagen.startsWith('http')) return nombreImagen;
+        return `${IMAGES_BASE_URL}${nombreImagen}`;
+    };
     return (
         <div className="card mb-3 news-card-container shadow-sm border-0 bg-white">
             <div className="row g-0 align-items-center p-3">
                 <div className="col-md-5">
                     <img
-                        src={`/img/cards/${noticia.imagen}`}
+                        src={obtenerImagen(noticia.imagen)}
                         className="img-fluid rounded-4 object-fit-cover border border-primary border-2"
                         alt="Noticia"
+                        onError={(e) => { e.target.onerror = null; e.target.src = "/img/cards/card-image-1.webp"; }}
                     />
 
                 </div>
