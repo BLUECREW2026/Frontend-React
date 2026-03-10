@@ -1,13 +1,22 @@
 import { useNavigate } from "react-router-dom";
 import { IMAGES_BASE_URL } from "../../config/axios";
 
-export default function CardEvento({ evento, id }) {
+export default function CardEvento({ evento, id, setOpenModal }) {
     const navigate = useNavigate();
 
+<<<<<<< feature/dinamic-images
     const obtenerImagen = (nombreImagen) => {
         if (!nombreImagen) return "/img/cards/card-image-2.webp";
         if (nombreImagen.startsWith('http')) return nombreImagen;
         return `${IMAGES_BASE_URL}${nombreImagen}`;
+=======
+    const handleClick = () => {
+        if (localStorage.getItem("usuarioId")) {
+            navigate(`/eventos/${id}`, { state: { evento } });
+        } else {
+            setOpenModal(true);
+        }
+>>>>>>> main
     };
     return (
         <div className="col p-3 d-flex align-items-stretch">
@@ -27,7 +36,7 @@ export default function CardEvento({ evento, id }) {
                     </p>
                     <div className="mt-auto text-center">
                         <button className="btn btn-primary text-light fw-bold w-100"
-                            onClick={() => navigate(`/eventos/${id}`, { state: { evento } })}>
+                            onClick={() => handleClick()}>
                             Inscribirse
                         </button>
                     </div>
