@@ -6,16 +6,20 @@ const ContadorAnimado = ({ valorFinal, duracion = 2000 }) => {
 
   useEffect(() => {
     let inicio = 0;
-    if (valorFinal === 0) return;
+    const final = valorFinal || 0;
+    if (final === 0) {
+      setConteo(0);
+      return;
+    }
 
     const framesPorSegundo = 60;
     const totalFrames = (duracion / 1000) * framesPorSegundo;
-    const incremento = valorFinal / totalFrames;
+    const incremento = final / totalFrames;
 
     const temporizador = setInterval(() => {
       inicio += incremento;
-      if (inicio >= valorFinal) {
-        setConteo(valorFinal);
+      if (inicio >= final) {
+        setConteo(final);
         clearInterval(temporizador);
       } else {
         setConteo(Math.floor(inicio));
@@ -25,7 +29,7 @@ const ContadorAnimado = ({ valorFinal, duracion = 2000 }) => {
     return () => clearInterval(temporizador);
   }, [valorFinal, duracion]);
 
-  return <span>{conteo.toLocaleString()}</span>;
+  return <span>{(conteo || 0).toLocaleString()}</span>;
 };
 
 export default function Estadisticas() {

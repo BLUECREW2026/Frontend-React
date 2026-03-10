@@ -1,15 +1,23 @@
 import { useNavigate } from "react-router-dom";
+import { IMAGES_BASE_URL } from "../../config/axios";
 
 export default function CardEvento({ evento, id }) {
     const navigate = useNavigate();
+
+    const obtenerImagen = (nombreImagen) => {
+        if (!nombreImagen) return "/img/cards/card-image-2.webp";
+        if (nombreImagen.startsWith('http')) return nombreImagen;
+        return `${IMAGES_BASE_URL}${nombreImagen}`;
+    };
     return (
         <div className="col p-3 d-flex align-items-stretch">
             <article className="card rounded-4 p-3 bg-white shadow h-100 w-100 d-flex flex-column">
                 <div className="ratio ratio-4x3">
                     <img
                         className="card-img-top rounded-4 object-fit-cover border border-primary border-2"
-                        src={evento.imagen}
+                        src={obtenerImagen(evento.imagen)}
                         alt={evento.titulo}
+                        onError={(e) => { e.target.onerror = null; e.target.src = "/img/cards/card-image-2.webp"; }}
                     />
                 </div>
                 <div className="card-body d-flex flex-column">

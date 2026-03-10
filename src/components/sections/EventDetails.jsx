@@ -1,4 +1,5 @@
 import { useLocation, useParams } from 'react-router-dom';
+import { IMAGES_BASE_URL } from "../../config/axios";
 import { useState, useEffect } from "react";
 import { eventos } from "../../data/Eventos";
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
@@ -14,6 +15,12 @@ export default function EventDetails() {
     const location = useLocation();
 
     const evento = location.state?.evento || eventos[parseInt(id)];
+
+    const obtenerImagen = (nombreImagen) => {
+        if (!nombreImagen) return "/img/cards/card-image-2.webp";
+        if (nombreImagen.startsWith('http')) return nombreImagen;
+        return `${IMAGES_BASE_URL}${nombreImagen}`;
+    };
 
     const customIcon = new Icon({
         iconUrl: geoIcon,
@@ -60,10 +67,11 @@ export default function EventDetails() {
                 <div className="row justify-content-center mb-5">
                     <div className="col-12 col-lg-10">
                         <img
-                            src={evento.imagen}
+                            src={obtenerImagen(evento.imagen)}
                             alt="Imagen del evento"
                             className="w-100 rounded-4 shadow-sm object-fit-cover border border-primary border-3"
                             style={{ height: '400px' }}
+                            onError={(e) => { e.target.onerror = null; e.target.src = "/img/cards/card-image-2.webp"; }}
                         />
                     </div>
                 </div>

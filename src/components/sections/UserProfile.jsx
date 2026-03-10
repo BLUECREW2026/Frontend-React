@@ -3,6 +3,7 @@ import profilePhoto from "../../assets/img/profile/profile-placeholder.webp";
 import mios from "../../assets/img/profile/cards/mios.jpg";
 import FormularioDatosUsuario from "../forms/FormularioDatosUsuario";
 import { Link } from "react-router-dom";
+import { IMAGES_BASE_URL } from "../../config/axios";
 
 export default function UserProfile() {
   const [modoEdicion, setModoEdicion] = useState(false);
@@ -15,7 +16,14 @@ export default function UserProfile() {
     localidad: "",
     bio: "",
     eventosCompletados: 0,
+    imagen: "",
   });
+
+  const obtenerImagen = (nombreImagen) => {
+    if (!nombreImagen) return profilePhoto;
+    if (nombreImagen.startsWith('http')) return nombreImagen;
+    return `${IMAGES_BASE_URL}${nombreImagen}`;
+  };
 
   useEffect(() => {
     const obtenerDatosDelUsuario = async () => {
@@ -41,6 +49,7 @@ export default function UserProfile() {
             localidad: "sin ubicacion",
             bio: datosReales.biografia || "Sin biografia ",
             eventosCompletados: datosReales.eventosCompletados || 0,
+            imagen: datosReales.imagen || datosReales.fotoPerfil || "",
           });
         } else {
           console.error("Error: El servidor respondió pero no con OK.");
@@ -82,10 +91,11 @@ export default function UserProfile() {
           <div className="row">
             <div className="col-md-4 d-flex justify-content-center align-items-center mb-4 mb-md-0">
               <img
-                src={profilePhoto}
+                src={obtenerImagen(userData.imagen)}
                 alt="Foto de perfil"
                 className="rounded-circle border border-3 border-white shadow-sm"
                 style={{ width: "150px", height: "150px", objectFit: "cover" }}
+                onError={(e) => { e.target.onerror = null; e.target.src = profilePhoto; }}
               />
             </div>
 
@@ -148,8 +158,8 @@ export default function UserProfile() {
             />
           </div>
           <div className="mt-auto text-center">
-            <Link 
-              to="/mis-eventos" 
+            <Link
+              to="/mis-eventos"
               className="btn btn-primary text-light fw-bold w-100 rounded-3 py-2"
             >
               Ver eventos
@@ -173,18 +183,18 @@ export default function UserProfile() {
           </div>
           <div className="mt-auto text-center">
             {userData.eventosCompletados >= 5 ? (
-            <Link 
-              to="/eventos/crear" 
-              className="btn btn-primary text-light fw-bold w-100 rounded-3 py-2"
-            >
-              Crear Evento
-            </Link>): (
-              <Link 
-              to="/eventos/crear" 
-              className="btn btn-primary text-light fw-bold w-100 rounded-3 py-2 disabled"
-            >
-              Crear Evento
-            </Link>
+              <Link
+                to="/eventos/crear"
+                className="btn btn-primary text-light fw-bold w-100 rounded-3 py-2"
+              >
+                Crear Evento
+              </Link>) : (
+              <Link
+                to="/eventos/crear"
+                className="btn btn-primary text-light fw-bold w-100 rounded-3 py-2 disabled"
+              >
+                Crear Evento
+              </Link>
             )}
           </div>
         </div>
@@ -204,8 +214,8 @@ export default function UserProfile() {
             />
           </div>
           <div className="mt-auto text-center">
-            <Link 
-              to="/participaciones" 
+            <Link
+              to="/participaciones"
               className="btn btn-primary text-light fw-bold w-100 rounded-3 py-2"
             >
               historico
