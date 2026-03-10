@@ -5,7 +5,7 @@ import GrupoDeCardEventoSmall from "../components/cards/GrupoDeCardEventoSmall";
 export default function MisEventos() {
   const [eventos, setEventos] = useState([]);
 
-  const usuarioLogueadoId = 2;
+  const id = Number(localStorage.getItem("usuarioId"));
 
   useEffect(() => {
     const fetchEventos = async () => {
@@ -20,12 +20,11 @@ export default function MisEventos() {
     fetchEventos();
   }, []);
 
-  
-  const publicados = eventos.filter(
-    (ev) => ev.usuario.id === usuarioLogueadoId
-  );
+  const publicados = eventos.filter((ev) => ev.usuario.id === id && ev.estadoEvento === "APROBADO");
 
-  const pendientes = eventos.filter((ev) => ev.usuario.id === usuarioLogueadoId && ev.estadoEvento === "PENDIENTE");
+  const pendientes = eventos.filter(
+    (ev) => ev.usuario.id === id && ev.estadoEvento === "PENDIENTE",
+  );
 
   return (
     <div className="flex-grow-1 mt-5 container">
