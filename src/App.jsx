@@ -44,7 +44,13 @@ function App() {
   useEffect(() => {
     const obtenerDatos = async () => {
       try {
-        const response = await clienteAxios.get('/eventos/activos');
+        let response;
+        if (!localStorage.getItem("usuarioId")) {
+          response = await clienteAxios.get('/eventos/activos');
+        } else {
+          response = await clienteAxios.get('/eventos/activos/' + localStorage.getItem("usuarioId"));
+          console.log(localStorage.getItem("usuarioId"));
+        }
         const eventosFormateados = response.data.map(item => {
           const { fecha, hora } = formatearFechaHora(item[4]);
 

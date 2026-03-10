@@ -12,6 +12,7 @@ export default function Navbar() {
   const logout = () => {
     localStorage.removeItem("isLogged");
     localStorage.removeItem("user");
+    localStorage.removeItem("usuarioId");
     setIsLogged(false);
     window.location.href = "/";
   };
@@ -160,7 +161,7 @@ export default function Navbar() {
                           Crear Evento
                         </Link>
                       </li>
-                       <li>
+                      <li>
                         <Link
                           className="nav-link text-white-50"
                           to="/participaciones"
