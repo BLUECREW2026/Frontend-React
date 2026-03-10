@@ -29,11 +29,7 @@ const ContadorAnimado = ({ valorFinal, duracion = 2000 }) => {
     return () => clearInterval(temporizador);
   }, [valorFinal, duracion]);
 
-<<<<<<< feature/dinamic-images
-  return <span>{(conteo || 0).toLocaleString()}</span>;
-=======
-return <span>{(conteo ?? 0).toLocaleString()}</span>;
->>>>>>> main
+  return <span>{(conteo ?? 0).toLocaleString()}</span>;
 };
 
 export default function Estadisticas() {
