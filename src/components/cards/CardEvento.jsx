@@ -4,19 +4,18 @@ import { IMAGES_BASE_URL } from "../../config/axios";
 export default function CardEvento({ evento, id, setOpenModal }) {
     const navigate = useNavigate();
 
-<<<<<<< feature/dinamic-images
     const obtenerImagen = (nombreImagen) => {
         if (!nombreImagen) return "/img/cards/card-image-2.webp";
         if (nombreImagen.startsWith('http')) return nombreImagen;
         return `${IMAGES_BASE_URL}${nombreImagen}`;
-=======
+    };
+
     const handleClick = () => {
         if (localStorage.getItem("usuarioId")) {
             navigate(`/eventos/${id}`, { state: { evento } });
         } else {
             setOpenModal(true);
         }
->>>>>>> main
     };
     return (
         <div className="col p-3 d-flex align-items-stretch">
