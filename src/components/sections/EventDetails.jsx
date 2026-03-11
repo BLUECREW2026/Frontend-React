@@ -101,11 +101,11 @@ export default function EventDetails() {
     if (!evento) return <p className="text-center mt-5">Evento no encontrado...</p>;
 
     return (
-        <section className="p-5 bg-light w-75 mx-auto shadow my-5 rounded-4">
-            <div className="container">
+        <div className="container mt-5 pb-5">
+            <div className="bg-white p-4 p-md-5 rounded shadow-sm border mx-auto" style={{ maxWidth: "1000px" }}>
                 <div className="row justify-content-center mb-4">
-                    <div className="col-lg-8 text-center">
-                        <h1 className="fw-bold text-primary display-5 mb-3 text-uppercase">
+                    <div className="col-lg-10 text-center">
+                        <h1 className="fw-bold text-primary mb-2 text-uppercase display-6 display-md-5">
                             {evento.titulo}
                         </h1>
                     </div>
@@ -116,46 +116,48 @@ export default function EventDetails() {
                         <img
                             src={obtenerImagen(evento.imagen)}
                             alt="Imagen del evento"
-                            className="w-100 rounded-4 shadow-sm object-fit-cover border border-primary border-3"
-                            style={{ height: '400px' }}
+                            className="w-100 rounded-4 shadow-sm object-fit-cover border border-primary border-3 ratio ratio-16x9"
+                            style={{ maxHeight: '400px' }}
                             onError={(e) => { e.target.onerror = null; e.target.src = "/img/cards/card-image-2.webp"; }}
                         />
                     </div>
                 </div>
 
                 <div className="row justify-content-center">
-                    <div className="col-lg-8 lh-lg fs-5 text-secondary">
+                    <div className="col-lg-8 lh-lg fs-6 fs-md-5">
                         <div className="mb-4">
-                            <h4 className="fw-bold text-primary mb-2">Descripción</h4>
-                            <p>{evento.descripcionEvento}</p>
+                            <h4 className="h5 fw-semibold text-primary mb-2">Descripción</h4>
+                            <p className='ms-2'>{evento.descripcionEvento}</p>
                         </div>
 
                         <div className="mb-4">
-                            <h4 className="fw-bold text-primary mb-2">Categoría: {evento.categoria}</h4>
-                            <p>{evento.descripcionCategoria}</p>
+                            <h4 className="h5 fw-semibold text-primary mb-2">Categoría</h4>
+                            <ul>
+                                <li className="fw-bold text-secondary">{evento.categoria}: <span className="fw-normal text-body">{evento.descripcionCategoria}</span></li>
+                            </ul>
                         </div>
 
                         <div className="mb-4">
-                            <h4 className="fw-bold text-primary mb-2">Requisitos</h4>
-                            <p className='text-primary'>{evento.material}</p>
+                            <h4 className="h5 fw-semibold text-primary mb-2">Requisitos</h4>
+                            <p className='ms-2'>{evento.material}</p>
                         </div>
 
                         <div className="mb-4">
-                            <h4 className="fw-bold text-primary mb-2">Fecha y Hora</h4>
-                            <p className="fw-bold text-secondary">
-                                <i className="bi bi-calendar-event me-2"></i> {evento.fechaDisplay} <br />
-                                <i className="bi bi-clock me-2"></i> {evento.horaDisplay}
+                            <h4 className="h5 fw-semibold text-primary mb-2">Fecha y Hora</h4>
+                            <p className="text-secondary ms-2">
+                                <i className="bi bi-calendar-event me-2"></i> {evento.fechaDisplay}
+                                <i className="bi bi-clock me-2 ms-4"></i> {evento.horaDisplay}
                             </p>
                         </div>
 
                         <div className="mb-4">
-                            <h4 className="fw-bold text-primary mb-2">Ubicación</h4>
-                            <p>{evento.ubicacion}</p>
+                            <h4 className="h5 fw-semibold text-primary mb-2">Ubicación</h4>
+                            <p className='ms-2'>{evento.ubicacion}</p>
                         </div>
 
                         <div className="mb-4">
-                            <h4 className="fw-bold text-primary mb-3">Ubicación en el mapa</h4>
-                            <div className="map-container-wrapper shadow-sm border border-2 border-primary">
+                            <h4 className="h5 fw-semibold text-primary mb-3">Ubicación en el mapa</h4>
+                            <div className="map-container-wrapper shadow-sm border border-3 border-primary rounded-4 overflow-hidden">
                                 <MapContainer
                                     center={position}
                                     zoom={15}
@@ -177,29 +179,29 @@ export default function EventDetails() {
                             </div>
                         </div>
 
-                        <div className="text-center mt-4">
+                        <div className="text-center mt-5">
                             {inscripciones ? (
                                 <>
                                     <button
-                                        className="btn btn-danger btn-lg text-white fw-bold px-5 py-3 rounded-3 shadow"
+                                        className="btn btn-danger btn-lg text-white fw-bold px-5 py-3 rounded-3 shadow-sm"
                                         onClick={handleDesinscripcion}
                                     >
                                         Anular Inscripción
                                     </button>
-                                    <p className="text-success fw-bold mt-2 small">
+                                    <p className="text-success fw-bold mt-3 small">
                                         <i className="bi bi-check-circle-fill me-1"></i> Ya estás inscrito en este evento
                                     </p>
                                 </>
                             ) : (
                                 <>
                                     <button
-                                        className="btn btn-primary btn-lg text-white fw-bold px-5 py-3 rounded-3 shadow"
+                                        className="btn btn-primary btn-lg text-white fw-semibold px-5 py-3 rounded-3 shadow-sm"
                                         onClick={handleInscripcion}
                                         disabled={datos >= evento.participantes}
                                     >
                                         {datos >= evento.participantes ? "Evento Completo" : "Inscribirse al Evento"}
                                     </button>
-                                    <p className="text-muted small mt-2">
+                                    <p className="text-muted small mt-3">
                                         * Plazas limitadas ({datos}/{evento.participantes} ocupadas)
                                     </p>
                                 </>
@@ -208,6 +210,6 @@ export default function EventDetails() {
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     );
 }
