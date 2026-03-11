@@ -1,8 +1,29 @@
+import userEvent from "@testing-library/user-event";
 import "../../../assets/icons/bootstrap-icons.css";
 import "./DesplegableUsuario.scss";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import clienteAxios from "../../../config/axios";
 
 export default function DesplegableUsuario({ onLogout }) {
+const [usuarios, setUsuarios] = useState([]);
+
+const id = Number(localStorage.getItem("usuarioId"));
+
+  useEffect(() => {
+    const fetchUsuarios = async () => {
+      try {
+        const response = await clienteAxios.get(`/usuarios/${id}`);
+        setUsuarios(response.data);
+      } catch (error) {
+        console.error("Error al obtener los usuarios:", error);
+      }
+    };
+
+    fetchUsuarios();
+  }, [id]);
+ 
+
   return (
     <div className="dropdown d-flex align-items-center">
       <button
@@ -31,7 +52,8 @@ export default function DesplegableUsuario({ onLogout }) {
             <i className="bi bi-calendar-event"></i> Mis Eventos
           </Link>
         </li>
-        <li>
+        {usuarios.eventosCompletados >= 5 ? (
+         <li>
           <Link
             className="dropdown-item d-flex align-items-center gap-2 py-2 text-secondary"
             to="/eventos/crear"
@@ -39,6 +61,14 @@ export default function DesplegableUsuario({ onLogout }) {
             <i className="bi bi-geo-alt-fill"></i> Crear Evento
           </Link>
         </li>
+        ) :  <li>
+          <Link
+            className="dropdown-item d-flex align-items-center gap-2 py-2 text-secondary disabled"
+            to="/eventos/crear"
+          >
+            <i className="bi bi-geo-alt-fill"></i> Crear Evento
+          </Link>
+        </li>}
         <li>
           <Link
             className="dropdown-item d-flex align-items-center gap-2 py-2 text-secondary"
