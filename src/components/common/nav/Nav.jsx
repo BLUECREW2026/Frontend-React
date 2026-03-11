@@ -5,6 +5,8 @@ import DesplegableUsuario from "./DesplegableUsuario";
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./Nav.scss";
+import { useEffect } from "react";
+import clienteAxios from "../../../config/axios";
 
 export default function Navbar() {
   const [isLogged, setIsLogged] = useState(
@@ -24,6 +26,23 @@ export default function Navbar() {
       closeBtn.click();
     }
   };
+
+  const [usuarios, setUsuarios] = useState([]);
+  const id = Number(localStorage.getItem("usuarioId"));
+
+
+  useEffect(() => {
+    const fetchUsuarios = async () => {
+      try {
+        const response = await clienteAxios.get(`/usuarios/${id}`);
+        setUsuarios(response.data);
+      } catch (error) {
+        console.error("Error al obtener los usuarios:", error);
+      }
+    };
+
+    fetchUsuarios();
+  }, [id]);
 
   return (
     <>
@@ -153,7 +172,7 @@ export default function Navbar() {
                           Mis Eventos
                         </Link>
                       </li>
-                      <li>
+                      {usuarios.eventosCompletados >= 5 ? (<li>
                         <Link
                           className="nav-link text-white-50"
                           to="/eventos/crear"
@@ -161,7 +180,13 @@ export default function Navbar() {
                         >
                           Crear Evento
                         </Link>
-                      </li>
+                      </li>) : <Link
+                          className="nav-link text-white-50 disabled"
+                          to="/eventos/crear"
+                          onClick={handleLinkClick}
+                        >
+                          Crear Evento
+                        </Link>}
                       <li>
                         <Link
                           className="nav-link text-white-50"
