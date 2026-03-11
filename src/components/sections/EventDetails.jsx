@@ -46,6 +46,29 @@ export default function EventDetails() {
         obtenerDatos();
     }, [evento.id]);
 
+    const inscripcion = async () => {
+
+        console.log(parseInt(localStorage.getItem("usuarioId")) + " " + evento.id);
+
+        const nuevaInscripcion = {
+            evento: {
+                idEvento: evento.id
+            },
+            usuario: {
+                id: parseInt(localStorage.getItem("usuarioId"))
+            },
+        };
+
+        try {
+            const respuesta = await clienteAxios.post("/inscripciones", nuevaInscripcion);
+
+            if (respuesta.status === 201) {
+                alert("Inscripción exitosa");
+            }
+        } catch (error) {
+            console.error("Error al inscribir:", error);
+        }
+    };
 
     if (!evento) return <p>Evento no encontrado...</p>;
     return (
@@ -136,7 +159,7 @@ export default function EventDetails() {
                         </div>
 
                         <div className="text-center mt-4">
-                            <button className="btn btn-primary btn-lg text-white fw-bold px-5 py-3 round-3 shadow">
+                            <button className="btn btn-primary btn-lg text-white fw-bold px-5 py-3 round-3 shadow" onClick={inscripcion}>
                                 Inscribirse al Evento
                             </button>
                             <p className="text-muted small mt-2">
