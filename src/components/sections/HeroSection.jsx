@@ -1,5 +1,3 @@
-
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import videoHero from "../../assets/hero/video-hero.mp4";

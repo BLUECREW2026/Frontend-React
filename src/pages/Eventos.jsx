@@ -2,9 +2,10 @@ import GrupoDeCardEvento from "../components/cards/GrupoDeCardEvento";
 import SearchBar from "../components/common/SearchBar";
 import Calendario from "../components/common/Calendario";
 import { useState } from "react";
+import LoginModal from "../components/sections/LoginModal/LoginModal";
 
 export default function Eventos({ datos }) {
-
+    const [openModal, setOpenModal] = useState(false);
     const [query, setQuery] = useState("");
 
     const [rangoFechas, setRangoFechas] = useState({
@@ -39,7 +40,8 @@ export default function Eventos({ datos }) {
                     />
                 </div>
             </div>
-            <GrupoDeCardEvento datos={filteredEvents} />
+            <GrupoDeCardEvento datos={filteredEvents} setOpenModal={setOpenModal} />
+            <LoginModal open={openModal} setOpenModal={setOpenModal} />
         </div>
     );
 }
