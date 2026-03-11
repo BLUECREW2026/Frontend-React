@@ -3,10 +3,11 @@ import "../../../assets/icons/bootstrap-icons.css";
 import "./DesplegableUsuario.scss";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import clienteAxios from "../../../config/axios";
+import clienteAxios, { IMAGES_BASE_URL } from "../../../config/axios";
 
 export default function DesplegableUsuario({ onLogout }) {
-const [usuarios, setUsuarios] = useState([]);
+  const [usuarios, setUsuarios] = useState([]);
+  const [imgError, setImgError] = useState(false);
 
 const id = Number(localStorage.getItem("usuarioId"));
 
@@ -32,7 +33,17 @@ const id = Number(localStorage.getItem("usuarioId"));
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
-        <i className="bi bi-person-circle text-secondary user-icon-btn"></i>
+        {usuarios?.foto && !imgError ? (
+          <img
+            src={usuarios.foto.startsWith('http') ? usuarios.foto : `${IMAGES_BASE_URL}${usuarios.foto}?t=${Date.now()}`}
+            alt="Foto perfil"
+            className="rounded-circle object-fit-cover"
+            style={{ width: "36px", height: "36px" }}
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          <i className="bi bi-person-circle text-secondary user-icon-btn"></i>
+        )}
       </button>
 
       <ul className="dropdown-menu dropdown-menu-end shadow border-0 bg-white user-dropdown-menu">

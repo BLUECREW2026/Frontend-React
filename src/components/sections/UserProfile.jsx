@@ -46,10 +46,11 @@ export default function UserProfile() {
             nombre: datosReales.nombre || "",
             apellidos: datosReales.apellido || "",
             email: datosReales.email || "",
-            localidad: datosReales.localidad ||"sin ubicacion",
+            localidad: datosReales.localidad || "sin ubicacion",
             bio: datosReales.biografia || "Sin biografia ",
             eventosCompletados: datosReales.eventosCompletados || 0,
-            imagen: datosReales.imagen || datosReales.fotoPerfil || "",
+            imagen: datosReales.foto || "",
+            timestamp: Date.now()
           });
         } else {
           console.error("Error: El servidor respondió pero no con OK.");
@@ -73,74 +74,73 @@ export default function UserProfile() {
   }
 
   return (
-    <section className="container p-5 mt-5 mb-5">
+    <section className="container p-5 mb-5">
+      {!modoEdicion && (
+        <h1 className="fw-bold text-tertiary mb-4 text-center">
+          Bienvenido de vuelta, {userData.nombre}
+        </h1>
+      )}
       <div className="card shadow rounded-4 p-4 p-md-5 bg-white border-0">
-        {modoEdicion ? (
-          <div>
-            <h4 className="mb-4 text-primary fw-bold">Editar Perfil</h4>
-            <FormularioDatosUsuario
-              datosActuales={userData}
-              onCancelar={() => setModoEdicion(false)}
-              onGuardar={(datosNuevos) => {
-                setUserData(datosNuevos);
-                setModoEdicion(false);
-              }}
+        <div className="row">
+          {/* Columna Izquierda: Foto y Botón */}
+          <div className="col-md-4 d-flex flex-column align-items-center mb-4 mb-md-0">
+            <img
+              src={obtenerImagen(userData.imagen)}
+              alt="Foto de perfil"
+              className="rounded-circle border border-3 border-white shadow-sm mb-4"
+              style={{ width: "160px", height: "160px", objectFit: "cover" }}
+              onError={(e) => { e.target.onerror = null; e.target.src = profilePhoto; }}
             />
+            <button
+              onClick={() => setModoEdicion(true)}
+              className="btn btn-secondary text-white fw-bold rounded-3 shadow-sm px-4 py-2 mt-auto"
+            >
+              Modificar Datos Personales
+            </button>
           </div>
-        ) : (
-          <div className="row">
-            <div className="col-md-4 d-flex justify-content-center align-items-center mb-4 mb-md-0">
-              <img
-                src={obtenerImagen(userData.imagen)}
-                alt="Foto de perfil"
-                className="rounded-circle border border-3 border-white shadow-sm"
-                style={{ width: "150px", height: "150px", objectFit: "cover" }}
-                onError={(e) => { e.target.onerror = null; e.target.src = profilePhoto; }}
-              />
-            </div>
 
-            <div className="col-md-8">
-              <div className="d-flex flex-column justify-content-center gap-1 ms-4">
-                <div className="d-flex align-items-baseline">
-                  <p className="text-secondary fw-bolder me-2">Nombre:</p>
-                  <span>{userData.nombre}</span>
-                </div>
-                <div className="d-flex align-items-baseline">
-                  <p className="text-secondary fw-bolder me-2">Apellidos:</p>
-                  <span>{userData.apellidos}</span>
-                </div>
-                <div className="d-flex align-items-baseline">
-                  <p className="text-secondary fw-bolder me-2">
-                    Correo Electrónico:
-                  </p>
-                  <span>{userData.email}</span>
-                </div>
-                <div className="d-flex align-items-baseline">
-                  <p className="text-secondary fw-bolder me-2">Localidad: </p>
-                  <span>{userData.localidad}</span>
-                </div>
+          {/* Columna Derecha: Datos y Biografía */}
+          <div className="col-md-8 ps-md-4">
+            <div className="d-flex flex-column gap-2 mb-4">
+              <div className="d-flex align-items-baseline">
+                <p className="text-secondary fw-semibold me-2 mb-0">Nombre:</p>
+                <span>{userData.nombre}</span>
+              </div>
+              <div className="d-flex align-items-baseline">
+                <p className="text-secondary fw-semibold me-2 mb-0">Apellidos:</p>
+                <span>{userData.apellidos}</span>
+              </div>
+              <div className="d-flex align-items-baseline">
+                <p className="text-secondary fw-semibold me-2 mb-0">Correo Electrónico:</p>
+                <span>{userData.email}</span>
+              </div>
+              <div className="d-flex align-items-baseline">
+                <p className="text-secondary fw-semibold me-2 mb-0">Localidad:</p>
+                <span>{userData.localidad}</span>
               </div>
             </div>
 
-            <div className="col-11 ms-4 mt-4">
-              <div className="mb-4">
-                <h5 className="text-uppercase mb-3 text-secondary fw-bold">
-                  Biografía
-                </h5>
-                <p className="text-secondary lh-base">{userData.bio}</p>
-              </div>
-              <div>
-                <button
-                  onClick={() => setModoEdicion(true)}
-                  className="btn btn-primary text-white fw-bold rounded-3 shadow-sm p-3"
-                >
-                  Modificar Datos Personales
-                </button>
-              </div>
+            <div className="border-top pt-4">
+              <h5 className="mb-3 text-secondary fw-bold">
+                Biografía
+              </h5>
+              <p className="lh-base mb-0">{userData.bio}</p>
             </div>
           </div>
-        )}
+        </div>
       </div>
+
+      {/* Modal de edicion de datos personales superpuesto */}
+      {modoEdicion && (
+        <FormularioDatosUsuario
+          datosActuales={userData}
+          onCancelar={() => setModoEdicion(false)}
+          onGuardar={(datosNuevos) => {
+            setUserData(datosNuevos);
+            setModoEdicion(false);
+          }}
+        />
+      )}
 
       <div className="d-flex flex-row justify-content-around mt-5 flex-wrap gap-4">
         <div
