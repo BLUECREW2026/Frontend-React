@@ -7,7 +7,7 @@ export default function GrupoDeCardEvento({ datos, setOpenModal }) {
                 {datos && datos.map((evento, index) => (
                     <CardEvento
                         key={evento.id}
-                        id={index}
+                        id={evento.id}
                         evento={evento}
                         setOpenModal={setOpenModal}
                     />
