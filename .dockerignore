@@ -1,6 +1,6 @@
-target/
-.mvn/
-mvnw
-mvnw.cmd
+node_modules/
+build/
+dist/
 .git/
 .gitignore
+.env
