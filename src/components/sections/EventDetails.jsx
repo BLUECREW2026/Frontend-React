@@ -133,7 +133,7 @@ export default function EventDetails() {
                         <div className="mb-4">
                             <h4 className="h5 fw-semibold text-primary mb-2">Categoría</h4>
                             <ul>
-                                <li className="fw-bold text-secondary">{evento.categoria}: <span className="fw-normal text-body">{evento.descripcionCategoria}</span></li>
+                                <li className="fw-semibold text-secondary">{evento.categoria}: <span className="fw-normal text-body">{evento.descripcionCategoria}</span></li>
                             </ul>
                         </div>
 
@@ -183,13 +183,13 @@ export default function EventDetails() {
                             {inscripciones ? (
                                 <>
                                     <button
-                                        className="btn btn-danger btn-lg text-white fw-bold px-5 py-3 rounded-3 shadow-sm"
+                                        className="btn btn-danger btn-lg text-white fw-semibold px-5 py-3 rounded-3 shadow-sm"
                                         onClick={handleDesinscripcion}
                                     >
                                         Anular Inscripción
                                     </button>
-                                    <p className="text-success fw-bold mt-3 small">
-                                        <i className="bi bi-check-circle-fill me-1"></i> Ya estás inscrito en este evento
+                                    <p className="text-success-dark fw-semibold mt-3">
+                                        <i className="bi bi-check-circle-fill me-1"></i> Felicidades, te acabas de inscribir en este evento!
                                     </p>
                                 </>
                             ) : (
