@@ -6,7 +6,7 @@ import clienteAxios from "../../../config/axios";
 export default function CalificarEvento() {
   const { state } = useLocation();
   const navigate = useNavigate();
-  const evento = state?.eventoSeleccionado;
+  const evento = state?.evento;
   const [rating, setRating] = useState(0);
   const [comentario, setComentario] = useState("");
 

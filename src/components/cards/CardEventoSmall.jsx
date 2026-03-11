@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { IMAGES_BASE_URL } from "../../config/axios";
 
-export default function CardEvento({ evento, ruta }) {
+export default function CardEvento({ evento, id, ruta }) {
     const navigate = useNavigate();
 
     const obtenerImagen = (nombreImagen) => {
@@ -11,8 +11,8 @@ export default function CardEvento({ evento, ruta }) {
     };
 
     const handleClick = () => {
-        navigate(`${ruta}/${evento.id}`, {
-            state: { eventoSeleccionado: evento }
+        navigate(`${ruta}/${id}`, {
+            state: { evento: evento }
         });
     }
     return (
