@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useOutletContext } from 'react-router-dom';
 import { IMAGES_BASE_URL } from "../../config/axios";
 import { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
@@ -11,6 +11,8 @@ import clienteAxios from "../../config/axios"
 export default function EventDetails() {
     const location = useLocation();
     const evento = location.state?.evento;
+
+    const { refrescarEventos } = useOutletContext();
 
     const [datos, setDatos] = useState(0);
     const [inscripciones, setInscripciones] = useState(null);
@@ -71,6 +73,7 @@ export default function EventDetails() {
             if (respuesta.status === 201 || respuesta.status === 200) {
                 setInscripciones(respuesta.data);
                 setDatos(prev => prev + 1);
+                refrescarEventos();
             }
         } catch (error) {
             console.error("Error al inscribir:", error);
@@ -88,6 +91,7 @@ export default function EventDetails() {
             if (respuesta.status === 204 || respuesta.status === 200) {
                 setInscripciones(null);
                 setDatos(prev => Math.max(0, prev - 1));
+                refrescarEventos();
             }
         } catch (error) {
             console.error("Error al desinscribir:", error);

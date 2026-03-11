@@ -6,7 +6,7 @@ export default function GrupoDeCardEvento({ datos, setOpenModal }) {
             <div className="row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4 align-items-stretch">
                 {datos && datos.map((evento, index) => (
                     <CardEvento
-                        key={index}
+                        key={evento.id}
                         id={index}
                         evento={evento}
                         setOpenModal={setOpenModal}
