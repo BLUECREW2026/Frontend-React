@@ -44,7 +44,7 @@ export default function CalificarEvento() {
 
   return (
     <div className="flex-grow-1 d-flex justify-content-center align-items-center py-5">
-      <div className="calificar-container d-flex flex-column align-items-center custom-gradient p-4 gap-3 text-light">
+      <div className="calificar-container d-flex flex-column align-items-center bg-gradient-primary-secondary p-4 gap-3 text-light">
         <h2 className="fw-bold">{evento.titulo}</h2>
         <h3 className="fw-bold">¿Cómo calificarías este evento?</h3>
 
