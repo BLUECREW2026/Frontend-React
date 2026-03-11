@@ -29,9 +29,6 @@ export default function CalificarEvento() {
       }
     } catch (error) {
       console.error("Error al enviar la calificación:", error);
-
-      const mensajeError = error.response?.data?.error || "Error al conectar con el servidor";
-      alert("Hubo un problema: " + mensajeError);
     }
   };
   if (!evento) {
