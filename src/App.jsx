@@ -1,5 +1,5 @@
 import {
-  Routes, // Eliminamos BrowserRouter as Router de aquí
+  Routes,
   Route,
   Outlet,
 } from "react-router-dom";
@@ -14,7 +14,6 @@ import UserProfile from "./components/sections/UserProfile";
 import Privacidad from "./pages/Privacidad";
 import DetalleEvento from "./pages/Evento";
 import Eventos from "./pages/Eventos";
-import { noticias as not } from "./data/Noticias";
 import { useState, useEffect } from "react";
 import clienteAxios from "./config/axios"
 import { formatearFechaHora } from "./utilities/formatearFechaHora"
@@ -83,8 +82,8 @@ function App() {
 
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home datos={datos} />} />
-          <Route path="/mis-eventos" element={<MisEventos datos={datos} />} />
-          <Route path="/participaciones" element={<Participaciones datos={datos} />} />
+          <Route path="/mis-eventos" element={<MisEventos />} />
+          <Route path="/participaciones" element={<Participaciones />} />
           <Route path="/perfil" element={<UserProfile />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/privacidad" element={<Privacidad />} />
@@ -92,7 +91,7 @@ function App() {
           <Route path="/eventos/:id" element={<DetalleEvento />} />
           <Route path="/cookies" element={<Cookies />} />
           <Route path="/aviso-legal" element={<AvisoLegal />} />
-          <Route path="/noticias" element={<Noticias noticias={not} />} />
+          <Route path="/noticias" element={<Noticias />} />
           <Route path="/noticias/:id" element={<Noticia />} />
           <Route path="/sobre-nosotros" element={<SobreNosotros />} />
           <Route path="/eventos/crear" element={<CrearEvento />} />

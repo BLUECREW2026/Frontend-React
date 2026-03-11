@@ -13,13 +13,14 @@ export default function CardNoticias({ noticia, id, noticias }) {
         <div className="card mb-3 news-card-container shadow-sm border-0 bg-white">
             <div className="row g-0 align-items-center p-3">
                 <div className="col-md-5">
-                    <img
-                        src={obtenerImagen(noticia.imagen)}
-                        className="img-fluid rounded-4 object-fit-cover border border-primary border-2"
-                        alt="Noticia"
-                        onError={(e) => { e.target.onerror = null; e.target.src = "/img/cards/card-image-1.webp"; }}
-                    />
-
+                    <div className="ratio ratio-4x3 overflow-hidden ">
+                        <img
+                            src={obtenerImagen(noticia.imagen)}
+                            className="img-fluid rounded-4 object-fit-cover border border-primary border-2"
+                            alt="Noticia"
+                            onError={(e) => { e.target.onerror = null; e.target.src = "/img/cards/card-image-1.webp"; }}
+                        />
+                    </div>
                 </div>
 
                 <div className="col-md-7">
