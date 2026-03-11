@@ -46,7 +46,7 @@ export default function UserProfile() {
             nombre: datosReales.nombre || "",
             apellidos: datosReales.apellido || "",
             email: datosReales.email || "",
-            localidad: "sin ubicacion",
+            localidad: datosReales.localidad ||"sin ubicacion",
             bio: datosReales.biografia || "Sin biografia ",
             eventosCompletados: datosReales.eventosCompletados || 0,
             imagen: datosReales.imagen || datosReales.fotoPerfil || "",
