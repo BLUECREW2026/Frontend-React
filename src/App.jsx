@@ -14,7 +14,7 @@ import UserProfile from "./components/sections/UserProfile";
 import Privacidad from "./pages/Privacidad";
 import DetalleEvento from "./pages/Evento";
 import Eventos from "./pages/Eventos";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import clienteAxios from "./config/axios"
 import { formatearFechaHora } from "./utilities/formatearFechaHora"
 import Cookies from "./pages/Cookies";
@@ -27,60 +27,61 @@ import SobreNosotros from "./pages/SobreNosotros";
 import PagOng from "./pages/Ong";
 import CalificarEvento from "./components/forms/CalificarEvento/CalificarEvento"
 
-const MainLayout = () => {
+const MainLayout = ({ refrescarEventos }) => {
   return (
     <>
       <Navbar />
-      <Outlet />
+      <Outlet context={{ refrescarEventos }} />
       <Footer />
     </>
   );
 };
 
 function App() {
-  const [datos, setDatos] = useState([])
+  const [datos, setDatos] = useState([]);
+
+  const obtenerDatos = useCallback(async () => {
+    try {
+      let response;
+      const usuarioId = localStorage.getItem("usuarioId");
+
+      if (!usuarioId) {
+        response = await clienteAxios.get('/eventos/activos');
+      } else {
+        response = await clienteAxios.get('/eventos/activos/' + usuarioId);
+      }
+
+      const eventosFormateados = response.data.map(item => {
+        const { fecha, hora } = formatearFechaHora(item[4]);
+        return {
+          id: item[0],
+          titulo: item[1],
+          imagen: item[2],
+          descripcionEvento: item[3],
+          fechaDisplay: fecha,
+          horaDisplay: hora,
+          categoria: item[5],
+          descripcionCategoria: item[6],
+          material: item[7],
+          ubicacion: item[8],
+          participantes: item[9]
+        };
+      });
+
+      setDatos(eventosFormateados);
+    } catch (error) {
+      console.error('Error al obtener los datos:', error);
+    }
+  }, []);
 
   useEffect(() => {
-    const obtenerDatos = async () => {
-      try {
-        let response;
-        if (!localStorage.getItem("usuarioId")) {
-          response = await clienteAxios.get('/eventos/activos');
-        } else {
-          response = await clienteAxios.get('/eventos/activos/' + localStorage.getItem("usuarioId"));
-          console.log(localStorage.getItem("usuarioId"));
-        }
-        const eventosFormateados = response.data.map(item => {
-          const { fecha, hora } = formatearFechaHora(item[4]);
-
-          return {
-            id: item[0],
-            titulo: item[1],
-            imagen: item[2],
-            descripcionEvento: item[3],
-            fechaDisplay: fecha,
-            horaDisplay: hora,
-            categoria: item[5],
-            descripcionCategoria: item[6],
-            material: item[7],
-            ubicacion: item[8],
-            participantes: item[9]
-          };
-        });
-
-        setDatos(eventosFormateados);
-      } catch (error) {
-        console.error('Error al obtener los datos:', error);
-      }
-    };
-
     obtenerDatos();
-  }, []);
+  }, [obtenerDatos]);
   return (
     <div className="d-flex flex-column min-vh-100">
       <Routes>
 
-        <Route element={<MainLayout />}>
+        <Route element={<MainLayout refrescarEventos={obtenerDatos} />}>
           <Route path="/" element={<Home datos={datos} />} />
           <Route path="/mis-eventos" element={<MisEventos />} />
           <Route path="/participaciones" element={<Participaciones />} />
