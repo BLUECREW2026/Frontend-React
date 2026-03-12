@@ -4,24 +4,17 @@ import GrupoDeCardEventoSmall from "../components/cards/GrupoDeCardEventoSmall";
 import { formatearFechaHora } from "../utilities/formatearFechaHora"
 
 export default function MisEventos() {
-  const [eventos, setEventos] = useState([]);
   const [inscripciones, setInscripciones] = useState([]);
+  const [publicados, setPublicados] = useState([]);
+  const [pendientes, setPendientes] = useState([]);
 
   const id = Number(localStorage.getItem("usuarioId"));
 
   useEffect(() => {
-    const fetchEventos = async () => {
-      try {
-        const response = await clienteAxios.get("/eventos");
-        setEventos(response.data);
-      } catch (error) {
-        console.error("Error al obtener los eventos:", error);
-      }
-    };
 
     const fetchInscripciones = async () => {
       try {
-        const response = await clienteAxios.get(`/eventos/inscritos/${id}`);
+        const response = await clienteAxios.get(`/mis-eventos/inscritos/${id}`);
         let eventosFormateados = response.data.map(item => {
           const { fecha, hora } = formatearFechaHora(item[4]);
           return {
@@ -44,15 +37,61 @@ export default function MisEventos() {
       }
     };
 
-    fetchEventos();
-    fetchInscripciones();
-  }, [id]);
-  console.log(eventos)
-  const publicados = eventos.filter((ev) => ev.usuario.id === id && ev.estadoEvento === "APROBADO");
+    const fetchPublicados = async () => {
+      try {
+        const response = await clienteAxios.get(`/mis-eventos/publicados/${id}`);
+        let eventosFormateados = response.data.map(item => {
+          const { fecha, hora } = formatearFechaHora(item[4]);
+          return {
+            id: item[0],
+            titulo: item[1],
+            imagen: item[2],
+            descripcionEvento: item[3],
+            fechaDisplay: fecha,
+            horaDisplay: hora,
+            categoria: item[5],
+            descripcionCategoria: item[6],
+            material: item[7],
+            ubicacion: item[8],
+            participantes: item[9]
+          };
+        });
+        setPublicados(eventosFormateados);
+      } catch (error) {
+        console.error("Error al obtener los eventos publicados:", error);
+      }
+    };
 
-  const pendientes = eventos.filter(
-    (ev) => ev.usuario.id === id && ev.estadoEvento === "PENDIENTE",
-  );
+    const fetchPendientes = async () => {
+      try {
+        const response = await clienteAxios.get(`/mis-eventos/pendientes/${id}`);
+        let eventosFormateados = response.data.map(item => {
+          const { fecha, hora } = formatearFechaHora(item[4]);
+          return {
+            id: item[0],
+            titulo: item[1],
+            imagen: item[2],
+            descripcionEvento: item[3],
+            fechaDisplay: fecha,
+            horaDisplay: hora,
+            categoria: item[5],
+            descripcionCategoria: item[6],
+            material: item[7],
+            ubicacion: item[8],
+            participantes: item[9]
+          };
+        });
+        setPendientes(eventosFormateados);
+      } catch (error) {
+        console.error("Error al obtener los eventos pendientes:", error);
+      }
+    }
+
+    fetchInscripciones();
+       fetchPublicados();
+       fetchPendientes();
+  }, [id]);
+
 
   return (
     <div className="flex-grow-1 mt-5 container">
