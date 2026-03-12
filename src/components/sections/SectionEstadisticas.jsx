@@ -1,7 +1,7 @@
 import clienteAxios from "../../config/axios"
 import { useState, useEffect } from "react";
 
-const ContadorAnimado = ({ valorFinal, duracion = 2000 }) => {
+const ContadorAnimado = ({ valorFinal, duracion = 4000 }) => {
   const [conteo, setConteo] = useState(0);
 
   useEffect(() => {
