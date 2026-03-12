@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./FormularioDatosUsuario.scss";
 
 export default function Formulario_Datos_Usuario({ datosActuales, onCancelar, onGuardar }) {
 

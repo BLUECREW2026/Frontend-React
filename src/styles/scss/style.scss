@@ -45,6 +45,20 @@ $font-weight-normal: 400;
 $font-weight-semibold: 600;
 $font-weight-bold: 800;
 
+// Modal Universal
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050;
+}
+
 // Importar functions y variables de Bootstrap antes del merge
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";

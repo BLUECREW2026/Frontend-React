@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import "./LoginModal.scss"
 
 export default function LoginModal({ open, setOpenModal }) {
     const navigate = useNavigate();
@@ -11,7 +10,7 @@ export default function LoginModal({ open, setOpenModal }) {
         }
     };
     return (
-        <div className="overlay shadow" onClick={handleOverlayClick}>
+        <div className="modal-overlay shadow" onClick={handleOverlayClick}>
             <div className="bg-white shadow w-25 border rounded p-3">
                 <p className="text-primary text-center">¡Casi llegas! Para ver este contenido, solo necesitas iniciar sesión. Te llevará apenas un segundo.
                 </p>

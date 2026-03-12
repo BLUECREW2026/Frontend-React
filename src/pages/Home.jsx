@@ -4,7 +4,7 @@ import SectionONG from '../components/sections/SectionONG';
 import GrupoDeCardEvento from '../components/cards/GrupoDeCardEvento';
 import { useState } from "react";
 import Carrucel from '../components/common/carrucel';
-import LoginModal from "../components/sections/LoginModal/LoginModal";
+import LoginModal from "../components/sections/LoginModal";
 
 function Home({ datos }) {
   const [openModal, setOpenModal] = useState(false);

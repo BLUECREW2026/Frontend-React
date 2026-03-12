@@ -2,7 +2,7 @@ import GrupoDeCardEvento from "../components/cards/GrupoDeCardEvento";
 import SearchBar from "../components/common/SearchBar";
 import Calendario from "../components/common/Calendario";
 import { useState } from "react";
-import LoginModal from "../components/sections/LoginModal/LoginModal";
+import LoginModal from "../components/sections/LoginModal";
 
 export default function Eventos({ datos }) {
     const [openModal, setOpenModal] = useState(false);
