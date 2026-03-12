@@ -43,12 +43,11 @@ export default function EventDetails() {
                 console.error('Error al obtener la cantidad:', error);
             }
         };
-
         const fetchInscrito = async () => {
             const usuarioId = localStorage.getItem("usuarioId");
             if (!usuarioId) return;
             try {
-                const response = await clienteAxios.get(`/inscripciones/usuario/${usuarioId}/evento/${evento.id}`);
+                const response = await clienteAxios.get(`/inscripciones/evento/${evento.id}/usuario/${usuarioId}`);
                 setInscripciones(response.data || null);
             } catch (error) {
                 console.error("Error al obtener estado de inscripción:", error);
