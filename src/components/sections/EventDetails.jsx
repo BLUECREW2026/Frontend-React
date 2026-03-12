@@ -7,6 +7,7 @@ import "./EventDetails.scss";
 import geoIcon from "../../assets/icons/geo-alt-fill.svg";
 import { Icon } from "leaflet";
 import clienteAxios from "../../config/axios"
+import { OpenStreetMapProvider } from 'leaflet-geosearch';
 
 export default function EventDetails() {
     const location = useLocation();
@@ -58,6 +59,23 @@ export default function EventDetails() {
         obtenerDatos();
         fetchInscrito();
     }, [evento]);
+
+    const [coords, setCoords] = useState(position);
+
+    useEffect(() => {
+        if (!evento?.ubicacion) return;
+
+        const provider = new OpenStreetMapProvider();
+
+        const buscarDireccion = async () => {
+            const results = await provider.search({ query: evento.ubicacion });
+            if (results && results.length > 0) {
+                setCoords([results[0].y, results[0].x]);
+            }
+        };
+
+        buscarDireccion();
+    }, [evento.ubicacion]);
 
     const handleInscripcion = async () => {
         const usuarioId = parseInt(localStorage.getItem("usuarioId"));
@@ -158,15 +176,16 @@ export default function EventDetails() {
                             <h4 className="h5 fw-semibold text-primary mb-3">Ubicación en el mapa</h4>
                             <div className="map-container-wrapper shadow-sm border border-3 border-primary rounded-4 overflow-hidden">
                                 <MapContainer
-                                    center={position}
+                                    center={coords}
                                     zoom={15}
                                     scrollWheelZoom={false}
+                                    key={`${coords[0]}-${coords[1]}`}
                                 >
                                     <TileLayer
                                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                                     />
-                                    <Marker position={position} icon={customIcon}>
+                                    <Marker position={coords} icon={customIcon}>
                                         <Popup>
                                             <div className="text-center">
                                                 <strong>{evento.titulo}</strong><br />
