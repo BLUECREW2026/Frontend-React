@@ -181,7 +181,7 @@ export default function Navbar() {
                           Crear Evento
                         </Link>
                       </li>) : <Link
-                          className="nav-link text-white-50 disabled"
+                          className="nav-link text-white-50 opacity-50 disabled"
                           to="/eventos/crear"
                           onClick={handleLinkClick}
                         >

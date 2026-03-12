@@ -74,7 +74,7 @@ const id = Number(localStorage.getItem("usuarioId"));
         </li>
         ) :  <li>
           <Link
-            className="dropdown-item d-flex align-items-center gap-2 py-2 text-secondary disabled"
+            className="dropdown-item d-flex align-items-center gap-2 py-2 text-secondary opacity-50 disabled"
             to="/eventos/crear"
           >
             <i className="bi bi-geo-alt-fill"></i> Crear Evento
